@@ -41,7 +41,7 @@ tl.to(primitiveValues, {
     {
       direction: 'bottom',
       duration: 1000,
-      easing: 'easeInExpo'
+      easing: 'expo.in'
     }
   ];
 
