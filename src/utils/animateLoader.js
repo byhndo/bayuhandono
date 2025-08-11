@@ -92,7 +92,7 @@ document.body.style.height = '100%';
     const arrOpts = [{      
       direction: 'bottom',
       duration: 1000,
-      easing: 'easeInExpo'
+      easing: 'expo.in'
     }];
 
     const it = document.querySelectorAll(".wrapbtnloader");
