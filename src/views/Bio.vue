@@ -62,8 +62,8 @@ Saya tidak terlalu suka dengan kalimat&ndash;kalimat bijak orang lain, tapi seti
 </filter> 
 </defs>
 </svg>	
+<h4 class="one2">Tentang Saya</h4>	
 </div>
-<h4 class="one2">Tentang Saya</h4>				     
 <div class="box">
 <div class="gr"></div>	
 </div>		    
