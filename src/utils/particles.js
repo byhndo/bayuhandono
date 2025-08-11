@@ -65,7 +65,7 @@ class Particles {
   init() {
     this.particles = [];
     this.frame = null;
-    this.maxParticles = 100; // batas maksimal jumlah particle
+    this.maxParticles = 300; // batas maksimal jumlah particle
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
