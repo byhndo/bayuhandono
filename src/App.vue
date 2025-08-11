@@ -108,13 +108,13 @@ gsap.ticker.lagSmoothing(0);
   firstLoad.value = false; 
 });
 
-const stopWatch = watch(isPreloading, async (loading) => {
+/*const stopWatch = watch(isPreloading, async (loading) => {
   if (!loading && firstLoad.value) {
     firstLoad.value = false;
     await nextTick();
     stopWatch();
   }
-});
+});*/
 	
 watch(
   () => route.path,
@@ -129,11 +129,9 @@ watch(
 );
 
 const beforeEnter = async (el) => {
-  isPreloading.value = true;
   await nextTick();
   await preloadImages(el);
   ScrollTrigger.refresh();
-  isPreloading.value = false;
 }
 
 const afterEnter = async (el) => {
