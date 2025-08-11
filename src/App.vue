@@ -25,6 +25,7 @@ const bg = ref('bio');
 const firstLoad = ref(true);
 const btnNav1 = ref(null);
 const btnNav2 = ref(null);
+const isPreloading = ref(true);
 
 const updateButtonColors = (path) => {
   if (!btnNav1.value || !btnNav2.value) return;
