@@ -142,7 +142,7 @@ tl.to(items, {autoAlpha: 1});
         autoAlpha: 0,
         onComplete: () => {
           particles.integrate({
-            duration: 1000,
+            duration: 1200,
             easing: "easeOutSine"
           });
            gsap.to(bttn, {
@@ -173,7 +173,7 @@ bttn.addEventListener("click", () => {
           autoAlpha: 0,
           onUpdate: () => {
             particles.integrate({
-              duration: 1000,
+              duration: 1200,
               easing: "easeOutSine"
             });
             gsap.to(bttn, {
@@ -202,7 +202,7 @@ bttn.addEventListener("click", () => {
         autoAlpha: 0,
         onComplete: () => {
           particles.integrate({
-            duration: 1000,
+            duration: 1200,
             easing: "easeOutSine"
           });
           gsap.to(bttn, {
