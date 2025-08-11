@@ -5,9 +5,6 @@ import path from 'path'
 export default defineConfig({
   base: '/byh/',
   plugins: [vue()],
-  build: {
-    rollupOptions: {},
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src') 
@@ -15,6 +12,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: true, 
+    rollupOptions: {},
   },
   define: {
     'window.jQuery': 'jQuery',
