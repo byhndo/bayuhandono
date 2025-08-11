@@ -108,8 +108,7 @@ import '../assets/particles.css';
 import '../style.css';
 
 import gsap from 'gsap';
-import anime from 'animejs/lib/anime.es.js';
-
+	
 window.addEventListener("load", function () {
 
 window.addEventListener("pageshow", ()=>{
