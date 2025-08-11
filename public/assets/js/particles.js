@@ -1,5 +1,3 @@
-import { gsap } from "gsap";
-
 const is = {
   arr: a => Array.isArray(a),
   str: a => typeof a === 'string',
@@ -280,5 +278,3 @@ class Particles {
     return this.o.direction === 'left' || this.o.direction === 'right';
   }
 }
-
-export default Particles;
