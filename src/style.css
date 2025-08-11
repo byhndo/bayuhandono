@@ -624,8 +624,9 @@ img {
  height:.02rem;
  background:var(--dark);
  transition:background 1s;
- opacity:1;
- visibility:visible;
+ opacity:0;
+ visibility:hidden;
+ z-index:1000000;
 }
 
 .photos .gr{
