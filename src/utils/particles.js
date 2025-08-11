@@ -1,4 +1,4 @@
-import anime from 'animejs/lib/anime.es.js';
+import gsap from 'gsap';
 
 const is = {
   arr: a => Array.isArray(a),
@@ -54,7 +54,7 @@ class Particles {
     style: 'fill',
     canvasPadding: 150,
     duration: 1000,
-    easing: 'easeInOutCubic',
+    easing: 'power1.inOut', // GSAP easing default
     direction: 'left',
     size: () => Math.floor((Math.random() * 3) + 1),
     speed: () => rand(4),
@@ -65,7 +65,7 @@ class Particles {
   init() {
     this.particles = [];
     this.frame = null;
-    this.maxParticles = 300; // maksimal jumlah particle
+    this.maxParticles = 300; // batas max particle
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
@@ -97,7 +97,7 @@ class Particles {
       const p = this.particles[i];
       if (p.life > p.death) {
         this.particles.splice(i, 1);
-        i--; // sesuaikan indeks setelah hapus
+        i--;
       } else {
         p.x += p.speed;
         p.y = this.o.oscillationCoefficient * Math.sin(p.counter * p.increase);
@@ -177,10 +177,7 @@ class Particles {
   }
 
   addParticles(rect, progress) {
-    // Gunakan nilai absolut agar konsisten saat integrate dan disintegrate
-    let progressDiff = Math.abs(progress - this.lastProgress);
-
-    // Batasi progressDiff supaya tidak terlalu besar
+    let progressDiff = this.disintegrating ? progress - this.lastProgress : this.lastProgress - progress;
     progressDiff = Math.min(Math.max(progressDiff, 0), 0.05);
 
     this.lastProgress = progress;
@@ -196,8 +193,6 @@ class Particles {
     }
 
     let i = Math.floor(this.o.particlesAmountCoefficient * (progressDiff * 100 + 1));
-
-    // Batasi jumlah total particle agar tidak melebihi maxParticles
     i = Math.min(i, this.maxParticles - this.particles.length);
 
     if (i > 0) {
@@ -230,9 +225,7 @@ class Particles {
       this.animate(anim => {
         const value = anim.animatables[0].target.value;
         this.addTransforms(value);
-        if (this.o.duration) {
-          this.addParticles(this.rect, value / 100);
-        }
+        if (this.o.duration) this.addParticles(this.rect, value / 100);
       });
     }
   }
@@ -245,9 +238,7 @@ class Particles {
       this.animate(anim => {
         const value = anim.animatables[0].target.value;
         setTimeout(() => this.addTransforms(value), this.o.duration);
-        if (this.o.duration) {
-          this.addParticles(this.rect, value / 100);
-        }
+        if (this.o.duration) this.addParticles(this.rect, value / 100);
       });
     }
   }
@@ -264,17 +255,14 @@ class Particles {
   }
 
   animate(update) {
-    anime({
-      targets: { value: this.disintegrating ? 0 : 101 },
+    const obj = { value: this.disintegrating ? 0 : 101 };
+    gsap.to(obj, {
       value: this.disintegrating ? 101 : 0,
-      duration: this.o.duration,
-      easing: this.o.easing,
-      begin: this.o.begin,
-      update,
-      complete: () => {
-        if (this.disintegrating) {
-          this.wrapper.style.visibility = 'hidden';
-        }
+      duration: this.o.duration / 1000,
+      ease: this.o.easing || 'power1.inOut',
+      onUpdate: () => update({ animatables: [{ target: obj }] }),
+      onComplete: () => {
+        if (this.disintegrating) this.wrapper.style.visibility = 'hidden';
       },
     });
   }
