@@ -108,13 +108,12 @@ gsap.ticker.lagSmoothing(0);
   firstLoad.value = false; 
 });
 
-watch(isPreloading, async (loading) => {
-  if (!loading) {
-    if (firstLoad.value) {
-      firstLoad.value = false; 
-      await nextTick();
-      setupReveal(el);
-    }
+const stopWatch = watch(isPreloading, async (loading) => {
+  if (!loading && firstLoad.value) {
+    firstLoad.value = false;
+    await nextTick();
+    setupReveal(el);
+    stopWatch();
   }
 });
 	
