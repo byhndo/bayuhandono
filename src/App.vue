@@ -112,7 +112,6 @@ const stopWatch = watch(isPreloading, async (loading) => {
   if (!loading && firstLoad.value) {
     firstLoad.value = false;
     await nextTick();
-    setupReveal(el);
     stopWatch();
   }
 });
