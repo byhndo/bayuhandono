@@ -54,7 +54,7 @@ class Particles {
     style: 'fill',
     canvasPadding: 150,
     duration: 1000,
-    easing: 'power1.inOut',  // GSAP easing
+    ease: 'power1.inOut',  // GSAP easing
     direction: 'left',
     size: () => Math.floor((Math.random() * 3) + 1),
     speed: () => rand(4),
