@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from "gsap";
 
 const is = {
   arr: a => Array.isArray(a),
@@ -47,7 +47,6 @@ class Particles {
     this.el = getElement(element);
     this.options = extend({ color: getCSSValue(this.el, 'background-color') }, this.defaults, options);
     this.init();
-    this.value = 1; // nilai animasi untuk GSAP
   }
 
   defaults = {
@@ -55,7 +54,7 @@ class Particles {
     style: 'fill',
     canvasPadding: 150,
     duration: 1000,
-    easing: 'power1.inOut',
+    easing: 'power1.inOut',  // GSAP easing
     direction: 'left',
     size: () => Math.floor((Math.random() * 3) + 1),
     speed: () => rand(4),
@@ -66,7 +65,6 @@ class Particles {
   init() {
     this.particles = [];
     this.frame = null;
-    this.maxParticles = 300;
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
@@ -98,7 +96,7 @@ class Particles {
       const p = this.particles[i];
       if (p.life > p.death) {
         this.particles.splice(i, 1);
-        i--; // adjust loop counter after removal
+        i--;
       } else {
         p.x += p.speed;
         p.y = this.o.oscillationCoefficient * Math.sin(p.counter * p.increase);
@@ -178,11 +176,7 @@ class Particles {
   }
 
   addParticles(rect, progress) {
-    let progressDiff = this.disintegrating ? progress - this.lastProgress : this.lastProgress - progress;
-
-    // Batasi progressDiff supaya tidak terlalu besar
-    progressDiff = Math.min(Math.max(progressDiff, 0), 0.05);
-
+    const progressDiff = this.disintegrating ? progress - this.lastProgress : this.lastProgress - progress;
     this.lastProgress = progress;
 
     let x = this.options.canvasPadding;
@@ -196,10 +190,6 @@ class Particles {
     }
 
     let i = Math.floor(this.o.particlesAmountCoefficient * (progressDiff * 100 + 1));
-
-    // Batasi jumlah total particle agar tidak melebihi maxParticles
-    i = Math.min(i, this.maxParticles - this.particles.length);
-
     if (i > 0) {
       while (i--) {
         this.addParticle({
@@ -222,50 +212,32 @@ class Particles {
     this.el.style[transformString] = `${translateProperty}(${-translateValue}%)`;
   }
 
-  disintegrate(options = {}) {
+  disintegrate(options) {
     if (!this.isAnimating()) {
       this.disintegrating = true;
       this.lastProgress = 0;
       this.setup(options);
-
-      gsap.to(this, {
-        value: 1,
-        duration: this.o.duration / 1000,
-        ease: this.o.easing,
-        onUpdate: () => {
-          const value = this.value;
-          this.addTransforms(value * 100);
-          if (this.o.duration) {
-            this.addParticles(this.rect, value);
-          }
-        },
-        onComplete: () => {
-          if (typeof options.onComplete === 'function') options.onComplete();
-        },
+      this.animate(anim => {
+        const value = anim.animatables[0].target.value;
+        this.addTransforms(value);
+        if (this.o.duration) {
+          this.addParticles(this.rect, value / 100);
+        }
       });
     }
   }
 
-  integrate(options = {}) {
+  integrate(options) {
     if (!this.isAnimating()) {
       this.disintegrating = false;
       this.lastProgress = 1;
       this.setup(options);
-
-      gsap.to(this, {
-        value: 0,
-        duration: this.o.duration / 1000,
-        ease: this.o.easing,
-        onUpdate: () => {
-          const value = this.value;
-          setTimeout(() => this.addTransforms(value * 100), this.o.duration);
-          if (this.o.duration) {
-            this.addParticles(this.rect, value);
-          }
-        },
-        onComplete: () => {
-          if (typeof options.onComplete === 'function') options.onComplete();
-        },
+      this.animate(anim => {
+        const value = anim.animatables[0].target.value;
+        setTimeout(() => this.addTransforms(value), this.o.duration);
+        if (this.o.duration) {
+          this.addParticles(this.rect, value / 100);
+        }
       });
     }
   }
@@ -279,6 +251,25 @@ class Particles {
       this.width = this.canvas.width = this.o.width || this.rect.width + this.o.canvasPadding * 2;
       this.height = this.canvas.height = this.o.height || this.rect.height + this.o.canvasPadding * 2;
     }
+  }
+
+  animate(update) {
+    const target = { value: this.disintegrating ? 0 : 101 };
+    const endValue = this.disintegrating ? 101 : 0;
+
+    gsap.to(target, {
+      value: endValue,
+      duration: this.o.duration / 1000,
+      ease: this.o.easing || "power1.inOut",
+      onStart: this.o.begin,
+      onUpdate: () => update({ animatables: [{ target }] }),
+      onComplete: () => {
+        if (this.disintegrating) {
+          this.wrapper.style.visibility = "hidden";
+        }
+        if (this.o.complete) this.o.complete();
+      },
+    });
   }
 
   isAnimating() {
