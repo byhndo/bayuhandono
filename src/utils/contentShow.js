@@ -116,14 +116,14 @@ gsap.to('.header', {
       color: "#068FFF",
       direction: "right",
       duration: 1000,
-      easing: "easeInOutCubic"
+      easing: "sine.out"
     },
 
     {
       color: "#068FFF",
       direction: "left",
       duration: 1000,
-      easing: "easeInOutCubic"
+      easing: "sine.out"
     }
   ];
 
