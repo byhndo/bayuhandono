@@ -626,7 +626,6 @@ img {
  transition:background 1s;
  opacity:0;
  visibility:hidden;
- z-index:1000000;
 }
 
 .photos .gr{
