@@ -8,7 +8,7 @@ import { useRoute, useRouter } from 'vue-router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/all';
-import anime from 'animejs/lib/anime.es.js';
+//import anime from 'animejs/lib/anime.es.js';
 import Lenis from 'lenis';
 import anime from './utils/anime.js';
 
