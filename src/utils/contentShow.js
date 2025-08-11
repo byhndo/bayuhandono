@@ -110,7 +110,7 @@ gsap.to('.header', {
     }
 });
 
-/*(function () {
+(function () {
   const arrOpts = [
     {
       color: "#068FFF",
@@ -229,68 +229,9 @@ bttn.addEventListener("click", () => {
       particles.disintegrate();               
     });
   });
-})();*/
-
-	    
-(function () {
-  const arrOpts = [
-    {
-      color: "#068FFF",
-      direction: "right",
-      duration: 1000,
-      easing: "power1.inOut"
-    },
-    {
-      color: "#068FFF",
-      direction: "left",
-      duration: 1000,
-      easing: "power1.inOut"
-    }
-  ];
-
-  const items = document.querySelectorAll(".nav");
-
-  items.forEach((el, pos) => {
-    let bttn = el.querySelector(".particles-button");
-    bttn.style.pointerEvents = "auto"; // aktifkan pointer events awalnya
-    let particlesOpts = arrOpts[pos];
-    const particles = new Particles(bttn, particlesOpts);
-
-    // Fungsi untuk jalankan integrasi dan munculkan tombol setelah selesai
-    function runIntegrate() {
-      bttn.style.pointerEvents = "none"; // disable klik saat animasi
-      gsap.to(bttn, {
-        autoAlpha: 0,
-        duration: 0.3,
-        onComplete: () => {
-          particles.integrate({
-            duration: particlesOpts.duration,
-            easing: particlesOpts.easing,
-            onComplete: () => {
-              gsap.to(bttn, {
-                autoAlpha: 1,
-                duration: 0.5,
-                onComplete: () => {
-                  bttn.style.pointerEvents = "auto"; // aktifkan klik lagi
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-
-    // Event klik tombol
-    bttn.addEventListener("click", () => {
-      runIntegrate();
-      particles.disintegrate({
-        duration: particlesOpts.duration,
-        easing: particlesOpts.easing
-      });
-    });
-  });
 })();
 
+	    
                     
 			 
 } /*contentShow*/
