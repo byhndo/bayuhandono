@@ -1,6 +1,5 @@
 import anime from 'animejs/lib/anime.es.js';
 
-
 const is = {
   arr: a => Array.isArray(a),
   str: a => typeof a === 'string',
