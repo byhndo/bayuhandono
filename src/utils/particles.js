@@ -65,6 +65,7 @@ class Particles {
   init() {
     this.particles = [];
     this.frame = null;
+    this.maxParticles = 30; // batas maksimal jumlah particle
 
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
@@ -96,6 +97,7 @@ class Particles {
       const p = this.particles[i];
       if (p.life > p.death) {
         this.particles.splice(i, 1);
+        i--; // adjust loop counter after removal
       } else {
         p.x += p.speed;
         p.y = this.o.oscillationCoefficient * Math.sin(p.counter * p.increase);
@@ -175,7 +177,11 @@ class Particles {
   }
 
   addParticles(rect, progress) {
-    const progressDiff = this.disintegrating ? progress - this.lastProgress : this.lastProgress - progress;
+    let progressDiff = this.disintegrating ? progress - this.lastProgress : this.lastProgress - progress;
+
+    // Batasi progressDiff supaya tidak terlalu besar
+    progressDiff = Math.min(Math.max(progressDiff, 0), 0.05);
+
     this.lastProgress = progress;
 
     let x = this.options.canvasPadding;
@@ -189,6 +195,10 @@ class Particles {
     }
 
     let i = Math.floor(this.o.particlesAmountCoefficient * (progressDiff * 100 + 1));
+
+    // Batasi jumlah total particle agar tidak melebihi maxParticles
+    i = Math.min(i, this.maxParticles - this.particles.length);
+
     if (i > 0) {
       while (i--) {
         this.addParticle({
