@@ -100,7 +100,7 @@ a:hover, a:active{
 .box {
  font-size: 10vw;
 }
-}	</stlye>
+}	</style>
 
 <script setup>
 window.addEventListener("load", function () {
@@ -199,7 +199,7 @@ window.addEventListener("pageshow", ()=> {
 })();
 
 const btn = document.getElementById("btn404");
-if (btn) {
+	if (btn) {
   btn.addEventListener("click", () => {
     setTimeout(() => {
       location.replace('/');
