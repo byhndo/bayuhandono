@@ -54,7 +54,7 @@ class Particles {
     style: 'fill',
     canvasPadding: 150,
     duration: 1000,
-    easing: 'power1.inOut',  // GSAP easing
+    easing: 'power2.inOut',  
     direction: 'left',
     size: () => Math.floor((Math.random() * 3) + 1),
     speed: () => rand(4),
@@ -260,7 +260,7 @@ class Particles {
     gsap.to(target, {
       value: endValue,
       duration: this.o.duration / 1000,
-      ease: this.o.easing || "power1.inOut",
+      ease: this.o.easing || "power2.inOut",
       onStart: this.o.begin,
       onUpdate: () => update({ animatables: [{ target }] }),
       onComplete: () => {
