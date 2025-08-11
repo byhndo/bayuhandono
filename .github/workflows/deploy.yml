@@ -36,9 +36,13 @@ jobs:
       - name: Create 404.html for GitHub Pages SPA
         run: cp dist/index.html dist/404.html
 
+      - name: Copy static 404 page
+        run: cp public/404-static.html dist/404-static.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
 
