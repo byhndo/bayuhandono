@@ -10,6 +10,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/all';
 import anime from 'animejs/lib/anime.es.js';
 import Lenis from 'lenis';
+import anime from './utils/anime.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
