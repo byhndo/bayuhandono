@@ -117,121 +117,59 @@ gsap.to('.header', {
       color: "#068FFF",
       direction: "right",
       duration: 1000,
-      easing: "easeInOutCubic"
+      easing: "power1.inOut"
     },
-
     {
       color: "#068FFF",
       direction: "left",
       duration: 1000,
-      easing: "easeInOutCubic"
+      easing: "power1.inOut"
     }
   ];
 
   const items = document.querySelectorAll(".nav");
 
   items.forEach((el, pos) => {
-    let bttn = el.querySelector(".particles-button");    
-    bttn.style.pointerEvents = "none";    
+    let bttn = el.querySelector(".particles-button");
+    bttn.style.pointerEvents = "auto"; // aktifkan pointer events awalnya
     let particlesOpts = arrOpts[pos];
     const particles = new Particles(bttn, particlesOpts);
-    let tl = gsap.timeline();
-tl.to(items, {autoAlpha: 1});     
-  bttn.addEventListener("click", () => {    
-    tl.to(bttn,{
+
+    // Fungsi untuk jalankan integrasi dan munculkan tombol setelah selesai
+    function runIntegrate() {
+      bttn.style.pointerEvents = "none"; // disable klik saat animasi
+      gsap.to(bttn, {
         autoAlpha: 0,
+        duration: 0.3,
         onComplete: () => {
           particles.integrate({
-            duration: 900,
-            easing: "easeOutSine"
-          });
-           gsap.to(bttn, {
-            duration: 1,
+            duration: particlesOpts.duration,
+            easing: particlesOpts.easing,
             onComplete: () => {
-              bttn.style.opacity = "1";
-              bttn.style.visibility = "visible";
-              bttn.style.pointerEvents = "none"; 
               gsap.to(bttn, {
+                autoAlpha: 1,
+                duration: 0.5,
                 onComplete: () => {
-                  bttn.style.pointerEvents = "none";
-                  gsap.to(bttn, {
-                  onComplete: () => {
-                  bttn.style.pointerEvents = "auto"; 
-                }
-              });
+                  bttn.style.pointerEvents = "auto"; // aktifkan klik lagi
                 }
               });
             }
           });
         }
-      },">1");
-     }); 
+      });
+    }
 
-bttn.addEventListener("click", () => {      
-      tl.to(items, {autoAlpha: 1});
-      tl.to(bttn,{
-          autoAlpha: 0,
-          onUpdate: () => {
-            particles.integrate({
-              duration: 900,
-              easing: "easeOutSine"
-            });
-            gsap.to(bttn, {
-              duration: 1,
-              onComplete: () => {
-              bttn.style.opacity = "1";
-              bttn.style.visibility = "visible";
-                bttn.style.pointerEvents = "none"; 
-                gsap.to(bttn, {
-                onComplete: () => {
-                  bttn.style.pointerEvents = "none"; 
-                  gsap.to(bttn, {
-                  onComplete: () => {
-                  bttn.style.pointerEvents = "auto"; 
-                }
-              });
-                }
-              }); 
-            }
-            });
-          }
-        },"+=1.5");
-      }); 
-
-      tl.to(bttn,{
-        autoAlpha: 0,
-        onComplete: () => {
-          particles.integrate({
-            duration: 900,
-            easing: "easeOutSine"
-          });
-          gsap.to(bttn, {
-            duration: 1,
-            onComplete: () => {
-              bttn.style.opacity = "1";
-              bttn.style.visibility = "visible";
-              bttn.style.pointerEvents = "none"; 
-              gsap.to(bttn, {
-                onComplete: () => {
-                  bttn.style.pointerEvents = "none"; 
-		  gsap.to(bttn, {
-                  onComplete: () => {
-                  bttn.style.pointerEvents = "auto"; 
-                 }
-                });
-                }
-              });
-            }
-          });
-        }
-      },pos + 1.3);
-    
-    bttn.addEventListener("click", () => {      
-      particles.disintegrate();               
+    // Event klik tombol
+    bttn.addEventListener("click", () => {
+      runIntegrate();
+      particles.disintegrate({
+        duration: particlesOpts.duration,
+        easing: particlesOpts.easing
+      });
     });
   });
 })();
 
                     
 			 
-}
+} /*contentShow
