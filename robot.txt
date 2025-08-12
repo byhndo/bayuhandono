@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bayuhandono.me/sitemap.xml
