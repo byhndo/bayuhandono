@@ -146,7 +146,8 @@ const afterLeave = (el) => {
 />
 
 <main>
-	
+
+<Header />
 <!-- <div class="header">
 <div class="indicator">
 <div class="indicator-dot"></div>
