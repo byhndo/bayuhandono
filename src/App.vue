@@ -170,7 +170,7 @@ const afterLeave = (el) => {
 </div>
 </div> -->
 	
-<Navbar
+<NavBar
     :go-to-bio="goToBio"
     :go-to-photos="goToPhotos"
     :btn-nav1="btnNav1"
