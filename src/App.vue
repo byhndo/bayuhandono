@@ -19,6 +19,8 @@ import setupReveal from './utils/setupReveal.js';
 import animePath from './utils/animePath.js';
 import Particles from './utils/particles.js';
 
+import Navbar from './components/Navbar.vue'
+
 const route = useRoute();
 const router = useRouter();
 const bg = ref('bio');
@@ -159,14 +161,21 @@ const afterLeave = (el) => {
   <path id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
 </svg>
 	
-<div class="wrapnav">
+<!-- <div class="wrapnav">
 <div class="nav theme">
 <button @click="goToBio" ref="btnNav1" class="particles-button">About</button> 
 </div>
 <div class="nav theme">
 <button @click="goToPhotos" ref="btnNav2" class="particles-button">Photo</button> 
 </div>
-</div> 
+</div> -->
+	
+<Navbar
+    :go-to-bio="goToBio"
+    :go-to-photos="goToPhotos"
+    :btn-nav1="btnNav1"
+    :btn-nav2="btnNav2"
+/>
 
 <main>
 	
