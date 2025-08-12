@@ -2,11 +2,10 @@
 import { onMounted, ref } from 'vue'
 
 const props = defineProps({
+  activeRoute: String,
   goToBio: Function,
-  goToPhotos: Function,
-  btnNav1: Object,
-  btnNav2: Object
-})
+  goToPhotos: Function
+});
 
 const btnNav1 = ref(null)
 const btnNav2 = ref(null)
