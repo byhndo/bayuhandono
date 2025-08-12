@@ -19,7 +19,7 @@ import setupReveal from './utils/setupReveal.js';
 import animePath from './utils/animePath.js';
 import Particles from './utils/particles.js';
 
-import Navbar from './components/Navbar.vue'
+import NavBar from './components/NavBar.vue'
 
 const route = useRoute();
 const router = useRouter();
