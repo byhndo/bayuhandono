@@ -12,8 +12,8 @@ const btnNav1 = ref(null)
 const btnNav2 = ref(null)
 
 onMounted(() => {
-  props.btnNav1.value = btnNav1.value
-  props.btnNav2.value = btnNav2.value
+  if (props.btnNav1) props.btnNav1.value = btnNav1.value
+  if (props.btnNav2) props.btnNav2.value = btnNav2.value
 })
 </script>
 
