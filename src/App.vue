@@ -25,29 +25,6 @@ const route = useRoute();
 const router = useRouter();
 const bg = ref('bio');
 const firstLoad = ref(true);
-const btnNav1 = ref(null);
-const btnNav2 = ref(null);
-
-const updateButtonColors = (path) => {
-  if (!btnNav1.value || !btnNav2.value) return;
-
-  let bgColor, textColor;
-
-  if (path === '/bio') {
-    bgColor = '#3C4048';   
-    textColor = '#e6e7eb'; 
-  } else if (path === '/photos') {
-    bgColor = '#e6e7eb';   
-    textColor = '#3C4048'; 
-} 
-
-  gsap.to([btnNav1.value, btnNav2.value], {
-    backgroundColor: bgColor,
-    color: textColor,
-    duration: .8,
-    delay: 1.03
-  });
-};
 
 const triggerAnimation = () => {
   animePath(bg.value);      
@@ -104,7 +81,7 @@ gsap.ticker.lagSmoothing(0);
   await animateLoader();
   await nextTick();
 
-  updateButtonColors(route.path);
+  //updateButtonColors(route.path);
   triggerAnimation();
   ScrollTrigger.refresh();
   firstLoad.value = false; 
@@ -124,7 +101,7 @@ watch(
     if (firstLoad.value) return;
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    updateButtonColors(newPath);
+    //updateButtonColors(newPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
   }
