@@ -146,7 +146,7 @@ const afterLeave = (el) => {
 
 <main>
 	
-<div class="header">
+<!-- <div class="header">
 <div class="indicator">
 <div class="indicator-dot"></div>
 </div>	
@@ -163,7 +163,7 @@ const afterLeave = (el) => {
 </svg> 
 <h1>Bayu<br>Handono</h1> 
 <div class="sub-title">Life Sucks and Then You Die!</div>
-</div>	
+</div>	-->
 
 <router-view v-if="!isPreloading" v-slot="{ Component }">
   <transition appear name="slide-fade" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter" @after-leave="afterLeave">
