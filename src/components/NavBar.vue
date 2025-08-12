@@ -7,13 +7,37 @@ const props = defineProps({
   goToPhotos: Function
 });
 
-const btnNav1 = ref(null)
-const btnNav2 = ref(null)
+const btnNav1 = ref(null);
+const btnNav2 = ref(null);
+
+const updateButtonColors = (path) => {
+  if (!btnNav1.value || !btnNav2.value) return;
+
+  let bgColor, textColor;
+
+  if (path === '/bio') {
+    bgColor = '#3C4048';   
+    textColor = '#e6e7eb'; 
+  } else if (path === '/photos') {
+    bgColor = '#e6e7eb';   
+    textColor = '#3C4048'; 
+} 
+
+  gsap.to([btnNav1.value, btnNav2.value], {
+    backgroundColor: bgColor,
+    color: textColor,
+    duration: .8,
+    delay: 1.03
+  });
+};
+
+watch(() => props.activeRoute, (newPath) => {
+  updateButtonColors(newPath);
+}, { immediate: true });
 
 onMounted(() => {
-  if (props.btnNav1) props.btnNav1.value = btnNav1.value
-  if (props.btnNav2) props.btnNav2.value = btnNav2.value
-})
+  updateButtonColors(props.activeRoute);
+});
 </script>
 
 <template>
