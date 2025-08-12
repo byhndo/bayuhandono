@@ -137,16 +137,7 @@ const afterLeave = (el) => {
 <svg id="photos" class="transition transition-photos" viewBox="0 0 100 100" preserveAspectRatio="none">
   <path id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
 </svg>
-	
-<!-- <div class="wrapnav">
-<div class="nav theme">
-<button @click="goToBio" ref="btnNav1" class="particles-button">About</button> 
-</div>
-<div class="nav theme">
-<button @click="goToPhotos" ref="btnNav2" class="particles-button">Photo</button> 
-</div>
-</div> -->
-	
+		
 <NavBar
   :active-route="route.path"
   :go-to-bio="goToBio"
