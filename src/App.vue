@@ -20,6 +20,7 @@ import animePath from './utils/animePath.js';
 import Particles from './utils/particles.js';
 
 import NavBar from './components/NavBar.vue'
+import Header from './components/Header.vue'
 
 const route = useRoute();
 const router = useRouter();
