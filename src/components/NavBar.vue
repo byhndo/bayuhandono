@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, watch, computed} from 'vue'
+import gsap from 'gsap';
 
 const props = defineProps({
   activeRoute: String,
