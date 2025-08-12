@@ -97,7 +97,7 @@ const btn = document.getElementById("btn404");
 	if (btn) {
   btn.addEventListener("click", () => {
     setTimeout(() => {
-      location.replace('/byh/');
+      location.replace('/');
     }, 2500);
   });
 }
