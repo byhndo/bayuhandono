@@ -315,7 +315,7 @@ h1 {
  font-family: var(--font2);
  color: var(--soc1);
  font-weight:400;
- transition: color 3.9s .5s;
+ transition: color 3.8s .5s;
  text-align:center;
  opacity:0;
  visibility:hidden;
