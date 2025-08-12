@@ -6,7 +6,8 @@ import Photos from './views/Photos.vue'
 const routes = [
   { path: '/', redirect: '/bio' },
   { path: '/bio', component: Bio },
-  { path: '/photos', component: Photos }
+  { path: '/photos', component: Photos },
+  { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
 const router = createRouter({
