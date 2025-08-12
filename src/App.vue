@@ -171,10 +171,9 @@ const afterLeave = (el) => {
 </div> -->
 	
 <NavBar
-    :go-to-bio="goToBio"
-    :go-to-photos="goToPhotos"
-    :btn-nav1="btnNav1"
-    :btn-nav2="btnNav2"
+  :active-route="route.path"
+  :go-to-bio="goToBio"
+  :go-to-photos="goToPhotos"
 />
 
 <main>
