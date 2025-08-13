@@ -115,7 +115,7 @@ const lenis = new Lenis({
 	
   await animateLoader();
   await nextTick();
-  updateButtonColors(props.activeRoute);
+  updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
 });
