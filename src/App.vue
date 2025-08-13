@@ -92,11 +92,21 @@ const stopWatch = watch(isPreloading, async (loading) => {
 	
 watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;	
+
+if (['/', '/bio', '/photos'].includes(newPath)) {
+   
+
+	  
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });     
 	triggerAnimation();
-	updateButtonColors(newPath);	
+	updateButtonColors(newPath);
+
+
+	}
+
+	
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
