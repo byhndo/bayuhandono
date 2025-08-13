@@ -77,7 +77,6 @@ const goToPhotos = () => {
 router.afterEach((to, from) => {
   if (to.fullPath !== from.fullPath) {
     nextTick(() => {
-      bg.value = (to.path === '/bio') ? 'bio' : 'photos';
       updateButtonColors(to.path);
       triggerAnimation();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -130,7 +129,7 @@ watch(
     if (firstLoad.value) return;
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+   // window.scrollTo({ top: 0, behavior: 'smooth' });
     updateButtonColors(newPath);
 	triggerAnimation();
   }
