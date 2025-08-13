@@ -104,7 +104,7 @@ gsap.ticker.lagSmoothing(0);
 	
   await animateLoader();
   await nextTick();
-
+  updateButtonColors();
   //triggerAnimation();
   ScrollTrigger.refresh();
   firstLoad.value = false; 
@@ -125,15 +125,16 @@ watch(
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    //triggerAnimation();
-	updateButtonColors();
+    updateButtonColors();
+	//triggerAnimation();
   }
 );
 
 router.afterEach((to, from) => {
   if (to.fullPath !== from.fullPath) {
     nextTick(() => {
-      bg.value = to.name 
+      bg.value = to.name; 
+	  updateButtonColors(to.path);
       triggerAnimation();
     })
   }
