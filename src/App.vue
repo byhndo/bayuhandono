@@ -101,18 +101,12 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 
 watch(() => route.path, async (newPath) => {
-  if (firstLoad.value) return;
-
-  const validRoutes = ['/', '/bio', '/photos'];
-
-  if (validRoutes.includes(newPath)) {
+  if (firstLoad.value) return;  
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
     updateButtonColors(newPath);
-  }
-
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
