@@ -1,14 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-
-const props = defineProps({
-  activeRoute: String,
-  goToBio: Function,
-  goToPhotos: Function
-});
-
-</script>
-
 <template>
   
 <div class="wrapnav">
