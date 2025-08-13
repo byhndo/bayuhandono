@@ -121,7 +121,7 @@ if (firstLoad.value || route.name === 'NotFound') return;
 	triggerAnimation();
 	updateButtonColors(newPath);
 
-}
+
 	
 }, { immediate: true });
 
