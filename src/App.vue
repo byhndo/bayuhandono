@@ -31,25 +31,6 @@ const triggerAnimation = () => {
   animePath(bg.value);      
 };
 
-
-	
-function smoothScrollToTop(duration = 0.7) {
-  return new Promise((resolve) => {
-    gsap.to(window, {
-      scrollTo: { y: 0 }, 
-      duration: duration,
-      ease: 'power2.out',
-      onComplete: resolve,
-    });
-  });
-}
-
-
-
-
-
-	
-
 const goToBio = () => {
       if (route.path === '/bio') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -111,16 +92,12 @@ const stopWatch = watch(isPreloading, async (loading) => {
 	
 watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;
-
-	await smoothScrollToTop(); 	
+ 	
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' });     
 	triggerAnimation();
-	updateButtonColors(newPath);
-
-
-	
+	updateButtonColors(newPath);	
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
