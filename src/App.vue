@@ -34,7 +34,7 @@ const props = defineProps({
   goToPhotos: Function
 });
 
-const updateButtonColors = (path = route.path) => {
+const updateButtonColors = (path) => {
   if (!btnNav1.value || !btnNav2.value) return;
 
   let bgColor, textColor;
