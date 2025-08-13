@@ -111,9 +111,9 @@ const lenis = new Lenis({
 	
   await animateLoader();
   await nextTick();
-  updateButtonColors();
+  updateButtonColors(route.path);
   ScrollTrigger.refresh();
- // firstLoad.value = false; 
+  firstLoad.value = false; 
 });
 
 const stopWatch = watch(isPreloading, async (loading) => {
@@ -124,7 +124,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 	
-/*watch(
+watch(
   () => route.path,
   async (newPath) => {
     if (firstLoad.value) return;
@@ -134,7 +134,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
     updateButtonColors(newPath);
 	triggerAnimation();
   }
-);*/
+);
 
 const beforeEnter = async (el) => {
   await nextTick();
