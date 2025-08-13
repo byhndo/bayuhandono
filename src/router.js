@@ -17,6 +17,8 @@ const router = createRouter({
   routes
 })
 
+const bg = ref('bio');
+
 const triggerAnimation = () => {
   animePath(bg.value);      
 };
