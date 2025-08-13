@@ -1,0 +1,18 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        { "type": "host", "value": "www.bayuhandono.me" }
+      ],
+      "destination": "https://bayuhandono.me",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}
