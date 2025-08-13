@@ -82,7 +82,7 @@ gsap.ticker.lagSmoothing(0);
   await animateLoader();
   await nextTick();
 
-  triggerAnimation();
+  //triggerAnimation();
   ScrollTrigger.refresh();
   firstLoad.value = false; 
 });
@@ -102,9 +102,17 @@ watch(
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    triggerAnimation();
+    //triggerAnimation();
   }
 );
+
+router.afterEach((to, from) => {
+  if (to.fullPath !== from.fullPath) {
+    nextTick(() => {
+      triggerAnimation()
+    })
+  }
+})
 
 const beforeEnter = async (el) => {
   await nextTick();
