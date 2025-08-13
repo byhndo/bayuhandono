@@ -110,7 +110,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 	
 watch(() => route.path, async (newPath) => {
-    if (firstLoad.value) return;
+   // if (firstLoad.value) return;
 
 if (firstLoad.value || route.name === 'NotFound') return;
 
