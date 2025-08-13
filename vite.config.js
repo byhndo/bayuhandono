@@ -4,7 +4,14 @@ import path from 'path'
 
 export default defineConfig({
   base: '/',
-  plugins: [vue()],
+  plugins: [vue(),           
+     {
+      name: 'copy-index-to-404',
+      closeBundle() {
+        fs.copyFileSync('dist/index.html', 'dist/404.html')
+      }
+     }      
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src') 
