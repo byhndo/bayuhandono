@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed} from 'vue';
 
 const btnNav1 = ref(null);
 const btnNav2 = ref(null);
