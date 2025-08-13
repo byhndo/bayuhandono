@@ -29,7 +29,7 @@ const firstLoad = ref(true);
 const btnNav1 = ref(null);
 const btnNav2 = ref(null);
 
-const updateButtonColors = (path) => {
+const updateButtonColors = (path = route.path) => {
   if (!btnNav1.value || !btnNav2.value) return;
 
   let bgColor, textColor;
