@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, watch, computed} from 'vue';
-
+import gsap from 'gsap';
+  
 const btnNav1 = ref(null);
 const btnNav2 = ref(null);
 const props = defineProps({
