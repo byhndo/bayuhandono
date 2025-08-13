@@ -89,8 +89,8 @@ const goToPhotos = () => {
   }
 });*/
 
-onMounted(async () => {
-  await router.isReady();
+onMounted(async () => { 
+ await router.isReady();
   if (route.path !== '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
@@ -127,21 +127,15 @@ const stopWatch = watch(isPreloading, async (loading) => {
     stopWatch();
   }
 });
-
-watch(() => props.activeRoute, (newPath) => {
-  updateButtonColors(newPath);
-}, { immediate: true });
 	
-watch(
-  () => route.path,
-  async (newPath) => {
+watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 	triggerAnimation();
-  }
-);
+	updateButtonColors(newPath);
+}, { immediate: true });
 
 const beforeEnter = async (el) => {
   await nextTick();
