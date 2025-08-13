@@ -17,10 +17,14 @@ const router = createRouter({
   routes
 })
 
+const triggerAnimation = () => {
+  animePath(bg.value);      
+};
+
 router.afterEach((to, from) => {
   if (to.fullPath !== from.fullPath) {
     nextTick(() => {
-      animePath()
+      triggerAnimation()
     })
   }
 })
