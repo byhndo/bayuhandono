@@ -107,11 +107,10 @@ watch(() => route.path, async (newPath) => {
   if (validRoutes.includes(newPath)) {
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    triggerAnimation();
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+	triggerAnimation();
     updateButtonColors(newPath);
-  }
-},{ immediate: true });
+  }},{ immediate: true });
 	
 const beforeEnter = async (el) => {
   await nextTick();
