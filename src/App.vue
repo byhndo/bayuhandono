@@ -59,12 +59,12 @@ await router.isReady();
  }*/
 
 
-  if (route.path === '/' || route.path === '/bio') {
+  if (route.path === '/photos') {
+    await router.replace('/');
     bg.value = 'bio';
-  } else if (route.path === '/photos') {
-    await router.replace('/bio');
+  } else {
+    // route / atau lainnya → bg tetap bio
     bg.value = 'bio';
-  }
 
 
 
@@ -102,11 +102,12 @@ const stopWatch = watch(isPreloading, async (loading) => {
 
 watch(() => route.path, async (newPath) => {
   if (firstLoad.value) return;  
-    if (newPath === '/' || newPath === '/bio') {
+    if (newPath === '/' ) {
     bg.value = 'bio';
     } else if (newPath === '/photos') {
-    bg.value = 'photos';
-	}    
+    await router.replace('/'); // tetap redirect /photos → /
+    bg.value = 'bio';
+	}
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
