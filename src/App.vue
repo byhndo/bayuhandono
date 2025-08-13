@@ -92,6 +92,12 @@ const stopWatch = watch(isPreloading, async (loading) => {
 	
 watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;
+
+
+const knownRoutes = ['/', '/bio', '/photos']
+  if (!knownRoutes.includes(newPath)) return
+
+	
  	
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
