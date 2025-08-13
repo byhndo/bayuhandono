@@ -113,7 +113,7 @@ const lenis = new Lenis({
   await nextTick();
   updateButtonColors();
   ScrollTrigger.refresh();
-  firstLoad.value = false; 
+ // firstLoad.value = false; 
 });
 
 const stopWatch = watch(isPreloading, async (loading) => {
