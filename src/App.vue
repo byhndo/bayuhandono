@@ -102,8 +102,12 @@ const stopWatch = watch(isPreloading, async (loading) => {
 
 watch(() => route.path, async (newPath) => {
   if (firstLoad.value) return;  
-    bg.value = (newPath === '/bio') ? 'bio' : 'photos';
-    await nextTick();
+    if (newPath === '/' || newPath === '/bio') {
+    bg.value = 'bio';
+    } else if (newPath === '/photos') {
+    bg.value = 'photos';
+	}    
+	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
     updateButtonColors(newPath);
