@@ -74,6 +74,17 @@ const goToPhotos = () => {
       }
 };
 
+router.afterEach((to, from) => {
+  if (to.fullPath !== from.fullPath) {
+    nextTick(() => {
+      bg.value = (to.path === '/bio') ? 'bio' : 'photos';
+      updateButtonColors(to.path);
+      triggerAnimation();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+
 onMounted(async () => {
   await router.isReady();
   if (route.path !== '/bio') {
@@ -104,8 +115,7 @@ gsap.ticker.lagSmoothing(0);
 	
   await animateLoader();
   await nextTick();
-  updateButtonColors(route.path);
-  //triggerAnimation();
+  updateButtonColors();
   ScrollTrigger.refresh();
   firstLoad.value = false; 
 });
@@ -118,7 +128,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 	
-watch(
+/*watch(
   () => route.path,
   async (newPath) => {
     if (firstLoad.value) return;
@@ -126,19 +136,9 @@ watch(
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     updateButtonColors(newPath);
-	//triggerAnimation();
+	triggerAnimation();
   }
-);
-
-router.afterEach((to, from) => {
-  if (to.fullPath !== from.fullPath) {
-    nextTick(() => {
-      bg.value = to.name; 
-	  updateButtonColors(to.path);
-      triggerAnimation();
-    })
-  }
-})
+);*/
 
 const beforeEnter = async (el) => {
   await nextTick();
