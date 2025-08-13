@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { nextTick } from 'vue'
+import { nextTick, ref } from 'vue' 
 import { animePath } from '../utils/animePath.js'
 
 import Bio from './views/Bio.vue'
@@ -13,19 +13,20 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(), 
+  history: createWebHistory(),
   routes
 })
 
-const bg = ref('bio');
+const bg = ref('bio')
 
 const triggerAnimation = () => {
-  animePath(bg.value);      
-};
+  animePath(bg.value)
+}
 
 router.afterEach((to, from) => {
   if (to.fullPath !== from.fullPath) {
     nextTick(() => {
+      bg.value = to.name 
       triggerAnimation()
     })
   }
