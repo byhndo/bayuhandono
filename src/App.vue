@@ -64,7 +64,7 @@ onMounted(async () => {
     await router.replace('/bio');
     bg.value = 'bio';
   }
-});
+
 
 
 const lenis = new Lenis({
