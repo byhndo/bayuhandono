@@ -104,7 +104,7 @@ gsap.ticker.lagSmoothing(0);
 	
   await animateLoader();
   await nextTick();
-  updateButtonColors();
+  updateButtonColors(route.path);
   //triggerAnimation();
   ScrollTrigger.refresh();
   firstLoad.value = false; 
@@ -125,7 +125,7 @@ watch(
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    updateButtonColors();
+    updateButtonColors(newPath);
 	//triggerAnimation();
   }
 );
