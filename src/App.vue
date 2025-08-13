@@ -92,6 +92,9 @@ const stopWatch = watch(isPreloading, async (loading) => {
 	
 watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;
+
+    if (route.name !== 'NotFound') {
+		  
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -99,6 +102,9 @@ watch(() => route.path, async (newPath) => {
 	triggerAnimation();
 	await nextTick();
 	updateButtonColors(newPath);
+
+	}
+		
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
