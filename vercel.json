@@ -8,11 +8,5 @@
       "destination": "https://bayuhandono.me",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/index.html"
-    }
   ]
 }
