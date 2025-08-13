@@ -107,11 +107,14 @@ watch(
 );
 
 router.afterEach((to, from) => {
-  if (to.fullPath !== from.fullPath) {
-    nextTick(() => {
-      triggerAnimation()
-    })
-  }
+  nextTick(() => {
+    if (to.name === 'bio') {
+      bg.value = 'bio'
+    } else if (to.name === 'photos') {
+      bg.value = 'photos'
+    }
+    triggerAnimation()
+  })
 })
 
 const beforeEnter = async (el) => {
