@@ -112,10 +112,10 @@ const stopWatch = watch(isPreloading, async (loading) => {
 watch(() => route.path, async (newPath) => {
     if (firstLoad.value) return;
 
-		
+	await smoothScrollToTop(); 	
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    await smoothScrollToTop(); 
+    
 	triggerAnimation();
 	updateButtonColors(newPath);
 
