@@ -51,27 +51,12 @@ const goToPhotos = () => {
       }
 };
 
-/*onMounted(async () => { 
+onMounted(async () => { 
  await router.isReady();
   if (route.path !== '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
-}*/
-
-onMounted(async () => {
-  await router.isReady();
-
-  if (route.path === '/') {
-    // redirect default ke /bio
-    await router.replace('/bio');
-    bg.value = 'bio';
-  } else if (route.path !== '/bio' && route.path !== '/photos') {
-    // redirect ke halaman 404
-    await router.replace({ name: 'NotFound' });
-  }
-
-
-
+}
 
 const lenis = new Lenis({
   duration: 2,
