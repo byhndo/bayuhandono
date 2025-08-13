@@ -28,6 +28,11 @@ const bg = ref('bio');
 const firstLoad = ref(true);
 const btnNav1 = ref(null);
 const btnNav2 = ref(null);
+const props = defineProps({
+  activeRoute: String,
+  goToBio: Function,
+  goToPhotos: Function
+});
 
 const updateButtonColors = (path = route.path) => {
   if (!btnNav1.value || !btnNav2.value) return;
@@ -110,7 +115,7 @@ const lenis = new Lenis({
 	
   await animateLoader();
   await nextTick();
-  updateButtonColors(route.path);
+  updateButtonColors(props.activeRoute);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
 });
@@ -122,6 +127,10 @@ const stopWatch = watch(isPreloading, async (loading) => {
     stopWatch();
   }
 });
+
+watch(() => props.activeRoute, (newPath) => {
+  updateButtonColors(newPath);
+}, { immediate: true });
 	
 watch(
   () => route.path,
@@ -130,7 +139,6 @@ watch(
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    updateButtonColors(newPath);
 	triggerAnimation();
   }
 );
