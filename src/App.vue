@@ -3,7 +3,7 @@ import './assets/normalize.css';
 import './assets/particles.css';
 import './style.css';
 	
-import { ref, watch, onMounted, nextTick, computed } from 'vue';
+import { ref, watch, onMounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -26,34 +26,6 @@ const route = useRoute();
 const router = useRouter();
 const bg = ref('bio');
 const firstLoad = ref(true);
-const btnNav1 = ref(null);
-const btnNav2 = ref(null);
-const props = defineProps({
-  activeRoute: String,
-  goToBio: Function,
-  goToPhotos: Function
-});
-
-const updateButtonColors = (path) => {
-  if (!btnNav1.value || !btnNav2.value) return;
-
-  let bgColor, textColor;
-
-  if (path === '/bio') {
-    bgColor = '#3C4048';   
-    textColor = '#e6e7eb'; 
-  } else if (path === '/photos') {
-    bgColor = '#e6e7eb';   
-    textColor = '#3C4048'; 
-} 
-
-  gsap.to([btnNav1.value, btnNav2.value], {
-    backgroundColor: bgColor,
-    color: textColor,
-    duration: .8,
-    delay: 1.03
-  });
-};
 	
 const triggerAnimation = () => {
   animePath(bg.value);      
@@ -78,16 +50,6 @@ const goToPhotos = () => {
         router.push('/photos');
       }
 };
-
-/*router.afterEach((to, from) => {
-  if (to.fullPath !== from.fullPath) {
-    nextTick(() => {
-      updateButtonColors(to.path);
-      triggerAnimation();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-});*/
 
 onMounted(async () => { 
  await router.isReady();
@@ -135,6 +97,7 @@ watch(() => route.path, async (newPath) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 	await nextTick();
 	triggerAnimation();
+	await nextTick();
 	updateButtonColors(newPath);
 }, { immediate: true });
 
