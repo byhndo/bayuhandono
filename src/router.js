@@ -5,7 +5,6 @@ import Photos from './views/Photos.vue'
 
 const routes = [
   { path: '/', component: Bio },
-  { path: '/bio', component: Bio },
   { path: '/photos', component: Photos }
 ]
 
