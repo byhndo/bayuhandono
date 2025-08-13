@@ -133,6 +133,7 @@ watch(() => route.path, async (newPath) => {
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+	await nextTick();
 	triggerAnimation();
 	updateButtonColors(newPath);
 }, { immediate: true });
