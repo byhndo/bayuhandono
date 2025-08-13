@@ -5,7 +5,7 @@ import Photos from './views/Photos.vue'
 import NotFound from './views/NotFound.vue'
 
 const routes = [
-  { path: '/bio', component: Bio, alias: '/',  name: 'bio' },
+  { path: '/bio', component: Bio, name: 'bio' },
   { path: '/photos', component: Photos, name: 'photos' },
   { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound'} 
 ]
