@@ -51,12 +51,21 @@ const goToPhotos = () => {
       }
 };
 
-onMounted(async () => { 
+/*onMounted(async () => { 
  await router.isReady();
   if (route.path !== '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
-}
+}*/
+
+onMounted(async () => { 
+  await router.isReady();
+  if (route.path === '/') {
+    await router.replace('/bio');
+    bg.value = 'bio';
+  }
+});
+
 
 const lenis = new Lenis({
   duration: 2,
