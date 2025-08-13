@@ -53,10 +53,10 @@ const goToPhotos = () => {
 
 onMounted(async () => { 
  await router.isReady();
-  if (route.path !== '/bio') {
+ /* if (route.path !== '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
-}
+}*/
 
 const lenis = new Lenis({
   duration: 2,
@@ -91,14 +91,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 	
 watch(() => route.path, async (newPath) => {
-    if (firstLoad.value) return;
-
-
-const knownRoutes = ['/', '/bio', '/photos']
-  if (!knownRoutes.includes(newPath)) return
-
-	
- 	
+    if (firstLoad.value) return;	
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });     
