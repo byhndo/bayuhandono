@@ -59,12 +59,13 @@ onMounted(async () => {
  }*/
 
 
-	if (route.path === '/photos') {
-    await router.replace('/bio');
-    bg.value = 'bio';
-    } else if (route.path === '/bio') {
-    bg.value = 'bio';
-	}
+   if (route.path === '/bio') {
+     bg.value = 'bio';
+   } else if (route.path === '/photos') {
+     await router.replace('/bio');
+     bg.value = 'bio';
+   }
+
 
 const lenis = new Lenis({
   duration: 2,
@@ -99,22 +100,13 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 	
 watch(() => route.path, async (newPath) => {
-    if (firstLoad.value) return;	
-
-if (['/', '/bio', '/photos'].includes(newPath)) {
-   
-
-	  
+    if (firstLoad.value) return;		  
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });     
 	triggerAnimation();
 	updateButtonColors(newPath);
-
-
-	}
-
-	
+	}	
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
