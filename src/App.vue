@@ -52,8 +52,8 @@ const goToPhotos = () => {
 };
 
 onMounted(async () => { 
-/* await router.isReady();
-   if (route.path === '/bio') {
+await router.isReady();
+   /*if (route.path === '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
  }*/
