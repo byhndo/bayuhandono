@@ -31,6 +31,36 @@ const triggerAnimation = () => {
   animePath(bg.value);      
 };
 
+
+	
+function smoothScrollToTop() {
+  return new Promise((resolve) => {
+    const distance = window.scrollY;
+    if (distance === 0) return resolve();
+
+    const duration = 500; // durasi scroll dalam ms
+    let startTime = null;
+
+    function step(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      window.scrollTo(0, distance * (1 - progress));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        resolve();
+      }
+    }
+
+    requestAnimationFrame(step);
+  });
+}
+
+
+
+
+	
+
 const goToBio = () => {
       if (route.path === '/bio') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -91,12 +121,19 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 	
 watch(() => route.path, async (newPath) => {
-    if (firstLoad.value) return;		  
+    if (firstLoad.value) return;
+
+if (firstLoad.value || route.name === 'NotFound') return;
+
+			
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-    window.scrollTo({ top: 0, behavior: 'smooth' });	
+    await smoothScrollToTop(); 
 	triggerAnimation();
-	updateButtonColors(newPath);		
+	updateButtonColors(newPath);
+
+}
+	
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
