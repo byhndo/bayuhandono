@@ -74,7 +74,7 @@ const goToPhotos = () => {
       }
 };
 
-router.afterEach((to, from) => {
+/*router.afterEach((to, from) => {
   if (to.fullPath !== from.fullPath) {
     nextTick(() => {
       updateButtonColors(to.path);
@@ -82,7 +82,7 @@ router.afterEach((to, from) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
-});
+});*/
 
 onMounted(async () => {
   await router.isReady();
@@ -129,7 +129,7 @@ watch(
     if (firstLoad.value) return;
     bg.value = (newPath === '/bio') ? 'bio' : 'photos';
     await nextTick();
-   // window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     updateButtonColors(newPath);
 	triggerAnimation();
   }
