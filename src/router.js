@@ -15,4 +15,10 @@ const router = createRouter({
   routes
 })
 
+router.afterEach((to, from) => {
+  if (to.fullPath !== from.fullPath) {
+    triggerAnimation()
+  }
+})
+
 export default router
