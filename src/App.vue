@@ -126,6 +126,7 @@ watch(
     await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     //triggerAnimation();
+	updateButtonColors();
   }
 );
 
@@ -134,7 +135,6 @@ router.afterEach((to, from) => {
     nextTick(() => {
       bg.value = to.name 
       triggerAnimation();
-	  updateButtonColors(to.path);
     })
   }
 })
