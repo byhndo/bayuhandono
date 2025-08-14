@@ -51,10 +51,6 @@ const goToPhotos = () => {
 };
 
 onMounted(async () => { 
-if (route.path !== '/bio') {
-        router.replace('/bio');
-        bg.value = 'bio';
-}
 	
 const lenis = new Lenis({
   duration: 2,
@@ -88,17 +84,25 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 
-watch(() => route.path, async (path) => {
+let firstVisit = true
 
-if (path === '/bio') bg.value = 'bio';
-  else if (path === '/photos') bg.value = 'photos';
-  else bg.value = 'notfound';
-	    
-	await nextTick();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    triggerAnimation();
-    updateButtonColors(path);
-}, { immediate: true });
+watch(() => route.path, async (path) => {
+  if (firstVisit && path === '/photos') {
+    firstVisit = false
+    await router.replace('/bio')
+    return
+  }
+  firstVisit = false
+
+  if (path === '/bio') bg.value = 'bio'
+  else if (path === '/photos') bg.value = 'photos'
+  else bg.value = 'notfound'
+
+  await nextTick()
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  triggerAnimation()
+  updateButtonColors(path)
+}, { immediate: true })
 
 const beforeEnter = async (el) => {
   await nextTick();
