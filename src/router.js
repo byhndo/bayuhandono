@@ -16,4 +16,18 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const hideNav = to.meta.hideNav || false
+  showNav.value = !hideNav
+  showHeader.value = !hideNav
+
+  if (firstVisit && to.path === '/photos') {
+    firstVisit = false
+    return next('/bio')
+  }
+
+  firstVisit = false
+  next()
+})
+
 export default router
