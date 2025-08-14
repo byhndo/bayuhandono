@@ -38,35 +38,6 @@
   </div>
 </template>
 
-<script setup>
-import { inject, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
-import Particles from '../utils/particles.js'
-import gsap from 'gsap'
-
-const router = useRouter()
-
-const showNav = inject('showNav')
-const showHeader = inject('showHeader')
-defineOptions({
-  name: 'NotFound'
-})
-
-onMounted(() => {
-  showNav.value = false
-  showHeader.value = false
-})
-
-onBeforeUnmount(() => {
-  showNav.value = true
-  showHeader.value = true
-})
-
-function goHome() {
-  router.push('/')
-}
-</script>
-
 <style scoped>
 html, body {
  background: var(--bgloaderscreen);
