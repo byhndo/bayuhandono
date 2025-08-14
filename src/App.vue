@@ -86,13 +86,16 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 
 watch(() => route.path, async (path) => {
+
 if (path === '/' || path === '/bio') {
-      bg.value = 'bio';
-    } else if (path === '/photos') {
-      bg.value = 'photos';
-    } else {
-      bg.value = 'notfound';
-	}
+    bg.value = 'bio';
+  } else if (path === '/photos') {
+    bg.value = 'photos';
+  } else {
+    bg.value = 'notfound';
+}
+
+	
     
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
