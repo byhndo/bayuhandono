@@ -89,19 +89,9 @@ const showHeader = ref(true)
 let firstVisit = true
 
 watch(() => route.path, async (path) => {
-  if (firstVisit && path === '/photos') {
-    firstVisit = false
-    await router.replace('/bio')
-    return
-  }
-  firstVisit = false
-
   if (path === '/bio') bg.value = 'bio'
   else if (path === '/photos') bg.value = 'photos'
   else bg.value = 'NotFound'
-
-  showNav.value = !route.meta.hideNav
-  showHeader.value = !route.meta.hideNav
 
   await nextTick()
   window.scrollTo({ top: 0, behavior: 'smooth' })
