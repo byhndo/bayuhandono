@@ -60,7 +60,7 @@ await router.isReady();
 
 
   if (route.path === '/' || route.path === '/bio') {
-    // Halaman bio
+    await router.replace('/bio');
     bg.value = 'bio';
   } 
   else if (router.path === '/photos') {
