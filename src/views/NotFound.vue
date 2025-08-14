@@ -49,6 +49,9 @@ const router = useRouter()
 // Ambil state global dari App.vue
 const showNav = inject('showNav')
 const showHeader = inject('showHeader')
+defineOptions({
+  name: 'NotFound'
+})
 
 onMounted(() => {
   // Sembunyikan nav & header
