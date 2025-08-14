@@ -8,7 +8,7 @@ const routes = [
   { path: '/', redirect: '/bio' },
   { path: '/bio', component: Bio, name: 'bio' },
   { path: '/photos', component: Photos, name: 'photos' },
-  { path: '/:pathMatch(.*)*', component: NotFound }
+  { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' }
 ];
 
 const router = createRouter({
