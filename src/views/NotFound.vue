@@ -46,7 +46,6 @@ import gsap from 'gsap'
 
 const router = useRouter()
 
-// Ambil state global dari App.vue
 const showNav = inject('showNav')
 const showHeader = inject('showHeader')
 defineOptions({
@@ -54,13 +53,11 @@ defineOptions({
 })
 
 onMounted(() => {
-  // Sembunyikan nav & header
   showNav.value = false
   showHeader.value = false
 })
 
 onBeforeUnmount(() => {
-  // Tampilkan lagi saat keluar halaman
   showNav.value = true
   showHeader.value = true
 })
