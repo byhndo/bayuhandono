@@ -127,10 +127,7 @@ const afterLeave = (el) => {
   <path id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
 </svg>
 
-<Navbar v-if="route.name !== 'NotFound'" />
-<Header v-if="route.name !== 'NotFound'" />
-		
-<NavBar
+<NavBar v-if="route.name !== 'NotFound'" 
   :active-route="route.path"
   :go-to-bio="goToBio"
   :go-to-photos="goToPhotos"
@@ -138,8 +135,8 @@ const afterLeave = (el) => {
 
 <main>
 
-<Header />
-
+<Header v-if="route.name !== 'NotFound'" />
+		
 <router-view v-if="!isPreloading" v-slot="{ Component }">
   <transition appear name="slide-fade" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter" @after-leave="afterLeave">
     <component :is="Component" :key="$route.fullPath" />
