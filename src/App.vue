@@ -100,13 +100,8 @@ watch(() => route.path, async (path) => {
   else if (path === '/photos') bg.value = 'photos'
   else bg.value = 'notfound'
 
-  if (path === '/:pathMatch(.*)*' || bg.value === 'NotFound') {
-    showNav.value = false
-    showHeader.value = false
-  } else {
-    showNav.value = true
-    showHeader.value = true
-  }
+  showNav.value = !route.meta.hideNav
+  showHeader.value = !route.meta.hideNav
 
   await nextTick()
   window.scrollTo({ top: 0, behavior: 'smooth' })
