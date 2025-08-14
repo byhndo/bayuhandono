@@ -6,28 +6,14 @@ import NotFound from './views/NotFound.vue'
 
 const routes = [
   { path: '/', redirect: '/bio' },
-  { path: '/bio', component: Bio, name: 'bio', meta: { hideNav: false } },
-  { path: '/photos', component: Photos, name: 'photos', meta: { hideNav: false } },
-  { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound', meta: { hideNav: true } }
+  { path: '/bio', component: Bio, name: 'bio' },
+  { path: '/photos', component: Photos, name: 'photos' },
+  { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  const hideNav = to.meta.hideNav || false
-  showNav.value = !hideNav
-  showHeader.value = !hideNav
-
-  if (firstVisit && to.path === '/photos') {
-    firstVisit = false
-    return next('/bio')
-  }
-
-  firstVisit = false
-  next()
 })
 
 export default router
