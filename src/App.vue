@@ -53,13 +53,11 @@ const goToPhotos = () => {
 
 onMounted(async () => { 
 await router.isReady();
-if (route.path === '/bio') {
-  await router.replace('/bio');
-} else if (route.path === '/photos') {
-  await router.replace('/photos');
-} else {await router.replace('/NotFound');
+if (route.path === '/bio' || route.path === '/photos') {
+    await router.replace('/bio');
+} else {
+    await router.replace('/NotFound');
 }
-
 
 const lenis = new Lenis({
   duration: 2,
