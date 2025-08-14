@@ -34,11 +34,12 @@ const triggerAnimation = () => {
 const goToBio = () => {
   if (route.path === '/' || route.path === '/bio') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    bg.value = 'bio';
-    router.push('/'); 
+    return; 
   }
+  bg.value = 'bio';
+  router.push('/'); 
 };
+
 
 const goToPhotos = () => {
       if (route.path === '/photos') {        
@@ -86,14 +87,9 @@ const stopWatch = watch(isPreloading, async (loading) => {
 
 watch(() => route.path, async (path) => {
 
-if (path === '/' || path === '/bio') {
-    bg.value = 'bio';
-  } else if (path === '/photos') {
-    bg.value = 'photos';
-  } else {
-    bg.value = 'notfound';
-}
-
+if (path === '/' || path === '/bio') bg.value = 'bio';
+  else if (path === '/photos') bg.value = 'photos';
+  else bg.value = 'notfound';
 	
     
 	await nextTick();
