@@ -87,6 +87,8 @@ const stopWatch = watch(isPreloading, async (loading) => {
 const showNav = ref(true)
 const showHeader = ref(true)
 let firstVisit = true
+provide('showNav', showNav)
+provide('showHeader', showHeader)
 
 watch(() => route.path, async (path) => {
   if (path === '/bio') bg.value = 'bio'
