@@ -32,15 +32,13 @@ const triggerAnimation = () => {
 };
 
 const goToBio = () => {
-  bg.value = 'bio';
-  if (route.path !== '/bio') {
-    router.push('/bio');
-  } else {
-    router.push({ path: '/bio', query: { t: Date.now() } });
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
+  if (route.path === '/bio') {        
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+     
+      } else {
+        bg.value = 'bio';
+        router.push('/bio');
+}};
 
 const goToPhotos = () => {
       if (route.path === '/photos') {        
