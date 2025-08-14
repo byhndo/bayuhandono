@@ -52,11 +52,16 @@ const goToPhotos = () => {
 };
 
 onMounted(async () => { 
-await router.isReady();
-if (route.path === '/bio' || route.path === '/photos') {
+const newPath = route.path;
+  if (newPath === '/' || newPath === '/bio') {
     await router.replace('/bio');
-} else {
+    bg.value = 'bio';
+  } else if (newPath === '/photos') {
+    await router.replace('/photos');
+    bg.value = 'photos';
+  } else {
     await router.replace('/NotFound');
+    bg.value = 'notfound';
 }
 
 const lenis = new Lenis({
@@ -94,12 +99,15 @@ const stopWatch = watch(isPreloading, async (loading) => {
 watch(() => route.path, async (newPath) => {
   if (firstLoad.value) return;  
     if (newPath === '/' || newPath === '/bio') {
-  await router.replace('/bio');
-  bg.value = 'bio';
+    await router.replace('/bio');
+    bg.value = 'bio';
+  } else if (newPath === '/photos') {
+    await router.replace('/photos');
+    bg.value = 'photos';
   } else {
-  await router.replace('/photos');
-  bg.value = 'photos';
-  } 
+    await router.replace('/NotFound');
+    bg.value = 'notfound';
+}
     
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
