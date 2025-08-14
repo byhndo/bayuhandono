@@ -96,8 +96,8 @@ watch(() => route.path, async (newPath) => {
       bg.value = 'bio';
     }
     else if (newPath === '/photos') {
-      await router.replace('/bio');
-      bg.value = 'bio';
+      await router.replace('/photos');
+      bg.value = 'photos';
     }
     else {
       await router.replace('/NotFound');
