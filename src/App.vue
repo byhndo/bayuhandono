@@ -61,6 +61,9 @@ await router.isReady();
    await router.replace('/bio');
    bg.value = 'bio';
  }
+ else {
+   await router.replace('/NotFound');
+ }
 
 const lenis = new Lenis({
   duration: 2,
@@ -104,9 +107,7 @@ watch(() => route.path, async (newPath) => {
       await router.replace('/photos');
       bg.value = 'photos';
     }
-    else {
-      await router.replace('/NotFound');
-	}
+    
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
