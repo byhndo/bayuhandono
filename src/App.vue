@@ -84,6 +84,8 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 
+const showNav = ref(true)
+const showHeader = ref(true)
 let firstVisit = true
 
 watch(() => route.path, async (path) => {
@@ -97,6 +99,14 @@ watch(() => route.path, async (path) => {
   if (path === '/bio') bg.value = 'bio'
   else if (path === '/photos') bg.value = 'photos'
   else bg.value = 'notfound'
+
+  if (path === '/:pathMatch(.*)*' || bg.value === 'NotFound') {
+    showNav.value = false
+    showHeader.value = false
+  } else {
+    showNav.value = true
+    showHeader.value = true
+  }
 
   await nextTick()
   window.scrollTo({ top: 0, behavior: 'smooth' })
