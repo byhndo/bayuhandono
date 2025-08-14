@@ -98,7 +98,7 @@ watch(() => route.path, async (path) => {
 
   if (path === '/bio') bg.value = 'bio'
   else if (path === '/photos') bg.value = 'photos'
-  else bg.value = 'notfound'
+  else bg.value = 'NotFound'
 
   showNav.value = !route.meta.hideNav
   showHeader.value = !route.meta.hideNav
