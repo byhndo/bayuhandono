@@ -59,14 +59,19 @@ await router.isReady();
  }*/
 
 
-  if (route.path === '/photos') {
+  if (route.path === '/' || route.path === '/bio') {
+    // Halaman bio
+    bg.value = 'bio';
+  } 
+  else if (router.path === '/photos') {
+    // Redirect /photos ke /
     await router.replace('/');
     bg.value = 'bio';
-  } else {
-    // route / atau lainnya → bg tetap bio
-    bg.value = 'bio';
-
-
+  } 
+  else {
+    // Semua route lain → redirect ke NotFound.vue
+    await router.replace('/NotFound');
+	}
 
 const lenis = new Lenis({
   duration: 2,
