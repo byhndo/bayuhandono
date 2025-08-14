@@ -58,7 +58,7 @@ await router.isReady();
    bg.value = 'bio';
  }
  else if (route.path === '/photos') {
-   await router.replace('/bio');
+   await router.replace('/');
    bg.value = 'bio';
  }
  else {
