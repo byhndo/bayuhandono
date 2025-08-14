@@ -51,21 +51,7 @@ const goToPhotos = () => {
       }
 };
 
-async function handleRouteRedirect(path) {
-  if (path === '/' || path === '/bio') {
-    await router.replace('/bio');
-    bg.value = 'bio';
-  } else if (path === '/photos') {
-    await router.replace('/photos');
-    bg.value = 'photos';
-  } else {
-    await router.replace('/NotFound');
-    bg.value = 'notfound';
-  }
-}
-
 onMounted(async () => { 
-handleRouteRedirect(route.path);
 
 const lenis = new Lenis({
   duration: 2,
@@ -99,13 +85,19 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 
-watch(() => route.path, async (newPath) => {
-handleRouteRedirect(newPath);
+watch(() => route.path, async (path) => {
+if (path === '/' || path === '/bio') {
+      bg.value = 'bio';
+    } else if (path === '/photos') {
+      bg.value = 'photos';
+    } else {
+      bg.value = 'notfound';
+	}
     
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     triggerAnimation();
-    updateButtonColors(newPath);
+    updateButtonColors(path);
 }, { immediate: true });
 
 const beforeEnter = async (el) => {
