@@ -52,11 +52,10 @@ const goToPhotos = () => {
 };
 
 onMounted(async () => { 
-const newPath = route.path;
-  if (newPath === '/' || newPath === '/bio') {
+  if (route.path === '/' || route.path === '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
-  } else if (newPath === '/photos') {
+  } else if (route.path === '/photos') {
     await router.replace('/photos');
     bg.value = 'photos';
   } else {
@@ -98,7 +97,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
 
 watch(() => route.path, async (newPath) => {
   if (firstLoad.value) return;  
-    if (newPath === '/' || newPath === '/bio') {
+    if (newPath === '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
   } else if (newPath === '/photos') {
