@@ -5,10 +5,10 @@ import Photos from './views/Photos.vue'
 import NotFound from './views/NotFound.vue'
 
 const routes = [
-  { path: '/', component: Bio, name: 'bio' },        // default route
-  { path: '/bio', component: Bio, name: 'bio' },     // alias /bio
+const routes = [
+  { path: '/', component: Bio, name: 'bio', alias: '/bio' },  
   { path: '/photos', component: Photos, name: 'photos' },
-  { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' } // catch-all
+  { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' }
 ];
 
 const router = createRouter({
