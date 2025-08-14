@@ -53,7 +53,7 @@ const goToPhotos = () => {
 
 onMounted(async () => { 
 await router.isReady();
-if (route.path !== '/bio' || route.path !== 'photos') {
+if (route.path !== '/bio' || route.path !== '/photos') {
     await router.replace('/NotFound');
  }
 
