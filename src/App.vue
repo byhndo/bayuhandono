@@ -102,11 +102,16 @@ const stopWatch = watch(isPreloading, async (loading) => {
 
 watch(() => route.path, async (newPath) => {
   if (firstLoad.value) return;  
-    if (newPath === '/' ) {
-    bg.value = 'bio';
-    } else if (newPath === '/photos') {
-    await router.replace('/'); // tetap redirect /photos → /
-    bg.value = 'bio';
+    if (newPath === '/' || newPath === '/bio') {
+      bg.value = 'bio';
+    }
+    else if (newPath === '/photos') {
+      await router.replace('/bio');
+      bg.value = 'bio';
+    }
+    else {
+      await router.replace('/bio');
+      bg.value = 'bio';
 	}
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
