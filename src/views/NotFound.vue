@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-export default {
-  name: 'NotFound'
-}
+import { ref } from 'vue'
+import Particles from '../utils/particles.js'
+import gsap  from 'gsap'
 
 sessionStorage.redirect = location.pathname + location.search + location.hash;	
 
