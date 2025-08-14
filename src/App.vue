@@ -53,25 +53,10 @@ const goToPhotos = () => {
 
 onMounted(async () => { 
 await router.isReady();
-   /*if (route.path === '/bio') {
+  if (route.path === '/bio') {
     await router.replace('/bio');
     bg.value = 'bio';
- }*/
-
-
-  if (route.path === '/' || route.path === '/bio') {
-    await router.replace('/bio');
-    bg.value = 'bio';
-  } 
-  else if (router.path === '/photos') {
-    // Redirect /photos ke /
-    await router.replace('/bio');
-    bg.value = 'bio';
-  } 
-  else {
-    // Semua route lain → redirect ke NotFound.vue
-    await router.replace('/NotFound');
-	}
+ }
 
 const lenis = new Lenis({
   duration: 2,
