@@ -115,8 +115,7 @@ watch(() => route.path, async (newPath) => {
       bg.value = 'bio';
     }
     else {
-      await router.replace('/bio');
-      bg.value = 'bio';
+      await router.replace('/NotFound');
 	}
 	await nextTick();
     window.scrollTo({ top: 0, behavior: 'smooth' });
