@@ -88,7 +88,6 @@ const stopWatch = watch(isPreloading, async (loading) => {
 watch(() => route.path, async (path) => {
 
 if (path === '/' || path === '/bio') {
-	await router.push ('/bio');
     bg.value = 'bio';
   } else if (path === '/photos') {
     bg.value = 'photos';
