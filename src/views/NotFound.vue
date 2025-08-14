@@ -68,7 +68,7 @@ function goHome() {
 </script>
 
 <style scoped>
-	  html, body {
+html, body {
  background: var(--bgloaderscreen);
  font-family: var(--font2);
  height: 100dvh;
