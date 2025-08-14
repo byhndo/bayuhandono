@@ -143,7 +143,7 @@ const afterLeave = (el) => {
 
 <main>
 
-<Header v-if="route.meta.showHeader"  />
+<Header v-if="route.meta.showHeader" />
 		
 <router-view v-if="!isPreloading" v-slot="{ Component }">
   <transition appear name="slide-fade" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter" @after-leave="afterLeave">
