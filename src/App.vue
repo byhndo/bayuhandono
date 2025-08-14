@@ -126,6 +126,9 @@ const afterLeave = (el) => {
 <svg id="photos" class="transition transition-photos" viewBox="0 0 100 100" preserveAspectRatio="none">
   <path id="photosPath" fill="var(--dark)" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
 </svg>
+
+<Navbar v-if="route.name !== 'NotFound'" />
+<Header v-if="route.name !== 'NotFound'" />
 		
 <NavBar
   :active-route="route.path"
