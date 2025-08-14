@@ -57,8 +57,7 @@ if (route.path === '/bio') {
   await router.replace('/bio');
 } else if (route.path === '/photos') {
   await router.replace('/photos');
-} else {
-  await router.replace('/NotFound');
+} else {await router.replace('/NotFound');
 }
 
 
