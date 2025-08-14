@@ -65,7 +65,7 @@ await router.isReady();
   } 
   else if (router.path === '/photos') {
     // Redirect /photos ke /
-    await router.replace('/');
+    await router.replace('/bio');
     bg.value = 'bio';
   } 
   else {
