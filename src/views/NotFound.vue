@@ -13,7 +13,7 @@
 </defs>
 </svg>				  
 <div class="box">404</div>	
-<button id="btn404" class="particles-button" click="goHome">Home</button>
+<button id="btn404" class="particles-button" @click="goHome">Home</button>
 </div>
 </div>
 </template>
