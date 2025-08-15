@@ -70,7 +70,10 @@ const lenis = new Lenis({
   gsap.ticker.add(time => { lenis.raf(time * 1000);});
   gsap.ticker.lagSmoothing(0);
 	
-  await animateLoader();
+  await animateLoader();  
+  if (route.path === '/') {
+    router.replace('/bio'); 
+  }
   await nextTick();
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
@@ -86,6 +89,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 
 watch(() => route.path, async (path) => {
+  if (firstLoad.value) return;
   if (path === '/bio') bg.value = 'bio'
   else if (path === '/photos') bg.value = 'photos'
   else bg.value = 'notfound'
