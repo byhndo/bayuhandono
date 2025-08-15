@@ -3,7 +3,7 @@ import './assets/normalize.css';
 import './assets/particles.css';
 import './style.css';
 	
-import { ref, watch, onMounted, nextTick } from 'vue';
+import { ref, watch, onMounted, nextTick, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -26,6 +26,7 @@ const route = useRoute();
 const router = useRouter();
 const bg = ref('bio');
 const firstLoad = ref(true);
+const isNotFound = computed(() => route.name === 'notfound')
 	
 const triggerAnimation = () => {
   animePath(bg.value);      
