@@ -72,6 +72,9 @@ const lenis = new Lenis({
 
   await animateLoader();  
   await nextTick();
+  if (route.path === '/') {
+    await router.replace('/bio'); 
+  }
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
