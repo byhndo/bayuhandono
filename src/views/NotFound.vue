@@ -59,7 +59,7 @@ const root404 = ref(null)
 
 function goHome() {
   setTimeout(() => {
-    router.replace('/bio')
+    router.replace('/')
   }, 2500)
 }
 
