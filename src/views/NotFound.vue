@@ -33,4 +33,7 @@ onBeforeUnmount(() => {
   align-items: center;
   text-align: center;
 }
+.header{
+  display:none;
+}
 </style>
