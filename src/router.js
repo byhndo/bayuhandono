@@ -6,8 +6,8 @@ import NotFound from './views/NotFound.vue'
 
 const routes = [
   { path: '/', redirect: '/bio' },
-  { path: '/bio', component: Bio, name: 'bio' },
-  { path: '/photos', component: Photos, name: 'photos' },
+  { path: '/bio', component: Bio, name: 'Bio' },
+  { path: '/photos', component: Photos, name: 'Photos' },
   { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' }
 ];
 
