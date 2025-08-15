@@ -29,7 +29,7 @@ import Particles from '@/utils/particles.js'
 
 function goHome() {
   setTimeout(() => {
-    window.location.replace('/bio')
+    router.replace('/bio');
   }, 2500)
 }
 	
