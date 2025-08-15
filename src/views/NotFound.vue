@@ -167,8 +167,10 @@ a:hover, a:active{
  opacity:1!important;
 }
 
-.header, .wrapnav, .indicator{
-  display: none;
+:deep(.header),
+:deep(.wrapnav),
+:deep(.indicator) {
+  display: none !important;
 }
 
 .container{
