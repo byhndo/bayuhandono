@@ -37,6 +37,8 @@ const feBlur = ref(null)
 const feDisplacementMap = ref(null)
 
 onMounted(() => {
+window.addEventListener("pageshow", ()=>{
+	
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
 console.log(feBlur.value, feDisplacementMap.value) 
@@ -70,6 +72,7 @@ tl.to(primitiveValues, {
       opacity: 1,  
       scale: 1 
   }, 0);
+});
 
     (function show() {
     const arrOpts = [{      
