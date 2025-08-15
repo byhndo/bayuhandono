@@ -91,8 +91,7 @@ tl.to(primitiveValues, {
       autoAlpha:1,
       opacity: 1,  
       scale: 1 
-  }, 0)
-});
+  }, 0);
 
     (function show() {
     const arrOpts = [{      
