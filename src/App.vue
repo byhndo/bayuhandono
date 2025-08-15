@@ -72,13 +72,10 @@ const lenis = new Lenis({
 
   await animateLoader();  
   await nextTick();
-  firstLoad.value = false; 
+  
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
-  if (route.path === '/') {
-    await router.push('/bio');
-    bg.value = 'bio';
-  }
+  firstLoad.value = false; 
 });
 
 const stopWatch = watch(isPreloading, async (loading) => {
@@ -90,7 +87,9 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 
 watch(() => route.path, async (path) => {
-  if (path === '/bio') {
+  if (firstLoad.value) return;
+	if (path === '/') {
+	await router.replace('/bio');
     bg.value = 'bio'
   } else if (path === '/photos') {
     bg.value = 'photos'
