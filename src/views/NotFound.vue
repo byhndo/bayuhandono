@@ -132,11 +132,13 @@ import { onMounted } from 'vue'
 import gsap from 'gsap';
 import Particles from '@/utils/particles.js'; 
 
-onMounted(() => {
-
 function goHome() {
-  router.push('/bio')
+setTimeout(() => {
+    router.push('/bio')  
+  }, 2500)
 }
+	
+onMounted(() => {
 	
 const feBlur = document.querySelector(`#noise feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
@@ -228,14 +230,7 @@ tl.to(primitiveValues, {
   });
 })();
 
-
-  btn.addEventListener("click", () => {
-    setTimeout(() => {
-      location.replace('/');
-    }, 2500);
-  });
-
 	
-});
+}); 
 
 </script>
