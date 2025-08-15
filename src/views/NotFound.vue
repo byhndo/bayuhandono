@@ -23,7 +23,7 @@ import '@/assets/normalize.css'
 import '@/assets/particles.css'
 import '@/style.css'
 
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import Particles from '@/utils/particles.js'
 
@@ -37,12 +37,9 @@ const feBlur = ref(null)
 const feDisplacementMap = ref(null)
 
 onMounted(() => {
-//const feBlur = document.querySelector(`#noise404 feGaussianBlur`);
-//const feDisplacementMap = document.querySelector(`#noise404 feDisplacementMap`);
-
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
-gsap.timeline({
+const tl = gsap.timeline({
     defaults: {
       duration: 2,
       ease: 'expo.out',
@@ -53,7 +50,7 @@ gsap.timeline({
     }
   })
 
-.to(primitiveValues, { 
+tl.to(primitiveValues, { 
     startAt: { stdDeviation: 40, scale: 100 },  
     stdDeviation: 0,  
     scale: 0 
@@ -121,7 +118,7 @@ gsap.timeline({
 
   })(); /*button*/
   
-}) /*mounted*/
+}) 
 </script>
 
 <style>
