@@ -2,8 +2,7 @@
   <div class="notfound-wrapper">
     <div class="notfound-content">
       <h1>404</h1>
-      <p>Oops! Page not found.</p>
-      <p>Redirecting to home...</p>
+      <p>Page not found</p>
     </div>
   </div>
 </template>
@@ -32,5 +31,8 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.notfound-content{
+  font-family: var(--font3);
 }
 </style>
