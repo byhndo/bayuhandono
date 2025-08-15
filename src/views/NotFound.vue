@@ -35,4 +35,7 @@ onBeforeUnmount(() => {
 .notfound-content{
   font-family: var(--font3);
 }
+h1{
+  color: var(--dark);
+}
 </style>
