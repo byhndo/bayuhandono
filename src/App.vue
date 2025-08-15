@@ -73,7 +73,6 @@ const lenis = new Lenis({
 
   await animateLoader();  
   await nextTick();  
-  updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
 });
@@ -102,7 +101,6 @@ watch(() => route.path, async (path) => {
   await nextTick()
   window.scrollTo({ top: 0, behavior: 'smooth' })
   triggerAnimation()
-  updateButtonColors(path)
 }, { immediate: true } )
 
 const beforeEnter = async (el) => {
