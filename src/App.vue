@@ -71,8 +71,7 @@ const lenis = new Lenis({
   gsap.ticker.lagSmoothing(0);
 
   await animateLoader();  
-  await nextTick();
-  
+  await nextTick();  
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
@@ -82,14 +81,17 @@ const stopWatch = watch(isPreloading, async (loading) => {
   if (!loading && firstLoad.value) {
     firstLoad.value = false;
     await nextTick();
+	if (route.path === '/') {
+      await router.push('/bio');
+      bg.value = 'bio';
+    }
     stopWatch();
   }
 });
 
 watch(() => route.path, async (path) => {
   if (path === '/bio') {
-   await router.replace('/bio');
-   bg.value = 'bio'
+    bg.value = 'bio'
   } else if (path === '/photos') {
     bg.value = 'photos'
   } else {
