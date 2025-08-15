@@ -167,6 +167,10 @@ a:hover, a:active{
  opacity:1!important;
 }
 
+.header, .wrapnav{
+  display: none;
+}
+
 .container{
  height:100%;
  display: flex;
