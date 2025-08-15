@@ -7,8 +7,7 @@ import NotFound from './views/NotFound.vue'
 const routes = [
   { path: '/bio', component: Bio, name: 'bio' },
   { path: '/photos', component: Photos, name: 'photos' },
-  { path: '/:pathMatch(.*)*', component: () => import('@/views/NotFound.vue')
-, name: 'notfound' }
+  { path: '/:pathMatch(.*)*', component: 'NotFound', name: 'notfound' }
 ];
 
 const router = createRouter({
