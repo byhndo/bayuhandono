@@ -1,7 +1,7 @@
 <template>
 <div class="container">
 <div class="main theme-404">	
-<svg>
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
 <filter id='noise404' x='0%' y='0%' width='100%' height='100%'>
 <feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
