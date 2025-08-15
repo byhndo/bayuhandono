@@ -38,8 +38,8 @@
   </div>
 </template>
 <script setup>
-import '../assets/normalize.css';
-import '../assets/particles.css';
+import '@/assets/normalize.css';
+import '@/assets/particles.css';
 import '@/style.css';
 	
 import gsap from 'gsap'
@@ -165,12 +165,6 @@ a {
 	
 a:hover, a:active{
  opacity:1!important;
-}
-
-:deep(.header),
-:deep(.wrapnav),
-:deep(.indicator) {
-  display: none !important;
 }
 
 .container{
