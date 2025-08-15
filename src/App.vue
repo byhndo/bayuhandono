@@ -51,6 +51,7 @@ const goToPhotos = () => {
 };
 
 onMounted(async () => { 
+await router.isReady();
 	
 const lenis = new Lenis({
   duration: 2,
