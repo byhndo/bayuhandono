@@ -139,11 +139,11 @@ const afterLeave = (el) => {
   :active-route="route.path"
   :go-to-bio="goToBio"
   :go-to-photos="goToPhotos"
-/>
+v-if="!isNotFound" />
 
 <main>
 
-<Header />
+<Header v-if="!isNotFound" />
 		
 <router-view v-if="!isPreloading" v-slot="{ Component }">
   <transition appear name="slide-fade" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter" @after-leave="afterLeave">
