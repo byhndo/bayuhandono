@@ -59,7 +59,7 @@ const root404 = ref(null)
 
 function goHome() {
   setTimeout(() => {
-    router.replace('/')
+    window.location.replace('https://bayuhandono.me')
   }, 2500)
 }
 
