@@ -18,12 +18,11 @@
 </div>
 </template>
 
-<script setup>
+<script>
 import '@/assets/normalize.css'
 import '@/assets/particles.css'
 import '@/style.css'
 
-import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import Particles from '@/utils/particles.js'
 
@@ -31,12 +30,13 @@ function goHome() {
   setTimeout(() => {
     window.location.replace('/bio')
   }, 2500)
-}
-	
-const feBlur = ref(null)
-const feDisplacementMap = ref(null)
+}	
 
-onMounted(() => {
+window.addEventListener("load", function () {
+window.addEventListener("pageshow", ()=>{
+	
+const feBlur = document.querySelector(`#noise feGaussianBlur`);
+const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
@@ -47,13 +47,11 @@ const tl = gsap.timeline({
       duration: 2,
       ease: 'expo.out',
 },
-  onUpdate() {
-      if (feBlur.value && feDisplacementMap.value) {
-        feBlur.value.setAttribute('stdDeviation', primitiveValues.stdDeviation)
-        feDisplacementMap.value.setAttribute('scale', primitiveValues.scale)
-      }
+  onUpdate: function () {
+      feBlur.setAttribute('stdDeviation', primitiveValues.stdDeviation);
+      feDisplacementMap.setAttribute('scale', primitiveValues.scale); 
     }
-  })
+  });
 
 tl.to(primitiveValues, { 
     startAt: { stdDeviation: 40, scale: 100 },  
@@ -71,59 +69,76 @@ tl.to(primitiveValues, {
       opacity: 1,  
       scale: 1 
   }, 0);
+});
 
-    (function show() {
-    const arrOpts = [{      
+    (function () {
+  const arrOpts = [    
+    {
       direction: 'bottom',
       duration: 1000,
       easing: 'expo.in'
-    }];
+    }
+  ];
 
-    const it = document.querySelectorAll(".secondbox404");
-    it.forEach((il, pos) => {
-      let bttn = il.querySelector(".particles-button");
-      if (!bttn) return;
-      let particlesOpts = arrOpts[pos];
-      const particles = new Particles(bttn, particlesOpts);
+  const items = document.querySelectorAll(".main");
 
-      gsap.to(bttn, {
-        autoAlpha: 0,
-        onComplete: () => {
-          particles.integrate({
-            duration: 900,
-            easing: "easeOutSine"
-          });
-          gsap.to(bttn, {
-            duration: 1,
-            onComplete: () => {
-              bttn.style.opacity = "1";
-              bttn.style.visibility = "visible";
-	      bttn.style.pointerEvents = "none";
-	      gsap.to(bttn, {
-                onComplete: () => {
-                  bttn.style.pointerEvents = "none"; 
-                  gsap.to(bttn, {
+  items.forEach((el, pos) => {
+    let bttn = el.querySelector("button.particles-button");
+
+    if (!bttn) return; 
+
+    let particlesOpts = arrOpts[pos];
+    const particles = new Particles(bttn, particlesOpts);
+
+    let tl = gsap.timeline()
+window.addEventListener("pageshow", ()=> {	 
+    tl.to(bttn, {
+      autoAlpha: 0,
+      onComplete: () => {
+        particles.integrate({
+          duration: 900,
+          easing: "easeOutSine"
+        });
+
+        gsap.to(bttn, {
+          duration: 1,	  
+          onComplete: () => {
+            bttn.style.opacity = "1";
+            bttn.style.visibility = "visible";
+	    bttn.style.pointerEvents = "none"; 
+	    gsap.to(bttn, {
+              onComplete: () => {
+                bttn.style.pointerEvents = "none"; 
+                gsap.to(bttn, {
                   onComplete: () => {
                   bttn.style.pointerEvents = "auto"; 
-                  }
-                 });
                 }
-              }); 
-            }
-          });
-        }
-      });
-
-          bttn.addEventListener("click", function () {
-            particles.disintegrate();
-            tl.play();
-          });
-		
-        });
-      
-  })();
-  
+              });
+             }
+            }); 
+          }
+        })
+      }
+    }, ">1.5")
 });
+
+      bttn.addEventListener("click", () => {
+      particles.disintegrate();
+    });
+  });
+})();
+
+const btn = document.getElementById("btn404");
+	if (btn) {
+  btn.addEventListener("click", () => {
+    setTimeout(() => {
+      location.replace('/');
+    }, 2500);
+  });
+}
+
+});
+    
 </script>
 
 <style>
