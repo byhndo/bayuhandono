@@ -32,7 +32,8 @@ function goHome() {
     window.location.replace('/bio')
   }, 2500)
 }
-
+	
+const bttn = ref(null)
 const feBlur = ref(null)
 const feDisplacementMap = ref(null)
 
@@ -114,7 +115,7 @@ tl.to(primitiveValues, {
         }
       });
 
-          bttn.addEventListener("click", function () {
+          bttn.value.addEventListener("click", function () {
             particles.disintegrate();
             tl.play();
           });
