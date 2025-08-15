@@ -40,7 +40,7 @@
 <script setup>
 import '../assets/normalize.css';
 import '../assets/particles.css';
-import '../style.css';
+import '@/style.css';
 	
 import gsap from 'gsap'
 import Particles from '../utils/particles.js'
