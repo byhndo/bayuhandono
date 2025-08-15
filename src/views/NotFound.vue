@@ -123,11 +123,11 @@ a:hover, a:active{
 <script setup>
 import '@/assets/normalize.css';
 import '@/assets/particles.css';
-import '@/style.css';
-	
-import { onMounted } from 'vue'
-import gsap from 'gsap'
-import Particles from '../utils/particles.js'
+import '@/style.css'; 
+
+import { onMounted } from 'vue';
+import gsap from 'gsap';
+import Particles from '@/utils/particles.js'; // utils di src/utils
 
 onMounted(() => {
 	
