@@ -29,7 +29,7 @@ import Particles from '@/utils/particles.js'
 
 function goHome() {
   setTimeout(() => {
-    window.location.replace('https://bayuhandono.me?ts=' + Date.now())
+    window.location.href = 'https://bayuhandono.me'
   }, 2500)
 }
 
@@ -39,14 +39,18 @@ const feDisplacementMap = ref(null)
 onMounted(() => {
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
+console.log(feBlur.value, feDisplacementMap.value) 
+
 const tl = gsap.timeline({
     defaults: {
       duration: 2,
       ease: 'expo.out',
 },
-  onUpdate: function () {
-      feBlur.value.setAttribute('stdDeviation', primitiveValues.stdDeviation);
-      feDisplacementMap.value.setAttribute('scale', primitiveValues.scale); 
+  onUpdate() {
+      if (feBlur.value && feDisplacementMap.value) {
+        feBlur.value.setAttribute('stdDeviation', primitiveValues.stdDeviation)
+        feDisplacementMap.value.setAttribute('scale', primitiveValues.scale)
+      }
     }
   })
 
@@ -113,12 +117,12 @@ tl.to(primitiveValues, {
             particles.disintegrate();
             tl.play();
           });
-        }); /*foreach*/
+		
+        });
       
-
-  })(); /*button*/
+  })();
   
-}) 
+});
 </script>
 
 <style>
