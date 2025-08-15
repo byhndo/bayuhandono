@@ -29,7 +29,7 @@ import Particles from '@/utils/particles.js'
 
 function goHome() {
   setTimeout(() => {
-    window.location.href ='https://bayuhandono.me'
+    window.location.replace('https://bayuhandono.me?ts=' + Date.now())
   }, 2500)
 }
 
