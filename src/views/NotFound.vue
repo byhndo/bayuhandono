@@ -26,7 +26,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style>
+<style scoped>
 .notfound-wrapper {
   display: flex;
   justify-content: center;
