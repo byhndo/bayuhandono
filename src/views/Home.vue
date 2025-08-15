@@ -1,5 +1,5 @@
 <template>
-  <Bio v-if="route.path === '/bio'" />
+  <Bio />
 </template>
 
 <script setup>
