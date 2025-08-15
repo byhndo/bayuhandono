@@ -3,7 +3,7 @@
     <div class="main theme-404" ref="root404">
       <svg class="hidden">
         <defs>
-          <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+          <filter id="noise404" x="0%" y="0%" width="100%" height="100%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur" />
             <feColorMatrix
               in="blur"
@@ -64,10 +64,9 @@ function goHome() {
 }
 
 onMounted(() => {
-  // Pastikan hanya cari elemen di dalam NotFound.vue ini
-  const feBlur = root404.value.querySelector(`#noise feGaussianBlur`)
+  const feBlur = root404.value.querySelector(`#noise404 feGaussianBlur`)
   const feDisplacementMap = root404.value.querySelector(
-    `#noise feDisplacementMap`
+    `#noise404 feDisplacementMap`
   )
 
   let primitiveValues = { stdDeviation: 0, scale: 0 }
@@ -99,30 +98,62 @@ onMounted(() => {
     0
   )
 
-  // Particles setup
-  const items = root404.value.querySelectorAll('.main')
-  items.forEach((el, pos) => {
-    const bttn = el.querySelector('button.particles-button')
-    if (!bttn) return
+    (function show() {
+    const arrOpts = [{      
+      direction: 'bottom',
+      duration: 1000,
+      easing: 'expo.in'
+    }];
 
-    const arrOpts = [
-      {
-        direction: 'bottom',
-        duration: 1000,
-        easing: 'expo.in',
-      },
-    ]
-    const particlesOpts = arrOpts[pos]
-    const particles = new Particles(bttn, particlesOpts)
+    const it = document.querySelectorAll(".main");
+    it.forEach((il, pos) => {
+      let bttn = il.querySelector(".particles-button");
+      if (!bttn) return;
+      let particlesOpts = arrOpts[pos];
+      const particles = new Particles(bttn, particlesOpts);
 
-    bttn.addEventListener('click', () => {
-      particles.disintegrate()
-    })
-  })
-})
+      gsap.to(bttn, {
+        autoAlpha: 0,
+        onComplete: () => {
+          particles.integrate({
+            duration: 900,
+            easing: "easeOutSine"
+          });
+          gsap.to(bttn, {
+            duration: 1,
+            onComplete: () => {
+              bttn.style.opacity = "1";
+              bttn.style.visibility = "visible";
+	      bttn.style.pointerEvents = "none";
+	      gsap.to(bttn, {
+                onComplete: () => {
+                  bttn.style.pointerEvents = "none"; 
+                  gsap.to(bttn, {
+                  onComplete: () => {
+                  bttn.style.pointerEvents = "auto"; 
+                  }
+                 });
+                }
+              }); 
+            }
+          });
+        }
+      });
+
+      gsap.to(bttn, {
+        onComplete: () => {
+          bttn.addEventListener("click", function () {
+            particles.disintegrate();
+            tl.play();
+          });
+        }
+      });
+    });
+  })();
+  
+}) /*mounted*/
 </script>
 
-<!-- Gunakan style global agar html, body bisa kena -->
 <style>
 html,
 body {
@@ -133,7 +164,6 @@ body {
 }
 </style>
 
-<!-- Style scoped untuk elemen dalam halaman ini -->
 <style scoped>
 .container {
   height: 100%;
