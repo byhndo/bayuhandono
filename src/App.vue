@@ -97,7 +97,7 @@ watch(() => route.path, async (path) => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   triggerAnimation()
   updateButtonColors(path)
-}, /*{ immediate: true }*/ )
+}, { immediate: true } )
 
 const beforeEnter = async (el) => {
   await nextTick();
