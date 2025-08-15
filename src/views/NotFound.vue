@@ -40,7 +40,7 @@
 <script setup>
 import '../assets/normalize.css';
 import '../assets/particles.css';
-import './style.css';
+import '../style.css';
 	
 import gsap from 'gsap'
 import Particles from '../utils/particles.js'
@@ -167,7 +167,7 @@ a:hover, a:active{
  opacity:1!important;
 }
 
-.header, .wrapnav{
+.header, .wrapnav, .indicator{
   display: none;
 }
 
