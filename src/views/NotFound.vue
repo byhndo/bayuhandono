@@ -49,54 +49,50 @@ import '@/assets/normalize.css'
 import '@/assets/particles.css'
 import '@/style.css'
 
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 import gsap from 'gsap'
 import Particles from '@/utils/particles.js'
 
-const router = useRouter()
-const root404 = ref(null)
-
 function goHome() {
   setTimeout(() => {
-    window.location.href('https://bayuhandono.me')
+    window.location.href ='https://bayuhandono.me'
   }, 2500)
 }
 
 onMounted(() => {
-  const feBlur = root404.value.querySelector(`#noise404 feGaussianBlur`)
-  const feDisplacementMap = root404.value.querySelector(
-    `#noise404 feDisplacementMap`
-  )
+const feBlur = document.querySelector(`#noise404 feGaussianBlur`);
+const feDisplacementMap = document.querySelector(`#noise404 feDisplacementMap`);
 
-  let primitiveValues = { stdDeviation: 0, scale: 0 }
-
-  const tl = gsap.timeline({
-    defaults: { duration: 2, ease: 'expo.out' },
-    onUpdate: () => {
-      feBlur?.setAttribute('stdDeviation', primitiveValues.stdDeviation)
-      feDisplacementMap?.setAttribute('scale', primitiveValues.scale)
-    },
+let primitiveValues = { stdDeviation: 0, scale: 0 };
+ 
+const tl = gsap.timeline({
+    defaults: {
+      duration: 2,
+      ease: 'expo.out',
+},
+  onUpdate: function () {
+      feBlur.setAttribute('stdDeviation', primitiveValues.stdDeviation);
+      feDisplacementMap.setAttribute('scale', primitiveValues.scale); 
+    }
   });
 
-  tl.to(
-    primitiveValues,
-    {
-      startAt: { stdDeviation: 40, scale: 100 },
-      stdDeviation: 0,
-      scale: 0,
+tl.to(primitiveValues, { 
+    startAt: { stdDeviation: 40, scale: 100 },  
+    stdDeviation: 0,  
+    scale: 0 
+  }, 0)
+
+.to(".box", {
+    startAt: {
+      autoAlpha: 0,
+      opacity: 0,  
+      scale: .6     
     },
-    0
-  ).to(
-    '.box',
-    {
-      startAt: { autoAlpha: 0, opacity: 0, scale: 0.6 },
-      autoAlpha: 1,
-      opacity: 1,
-      scale: 1,
-    },
-    0
-  );
+      autoAlpha:1,
+      opacity: 1,  
+      scale: 1 
+  }, 0)
+});
 
     (function show() {
     const arrOpts = [{      
