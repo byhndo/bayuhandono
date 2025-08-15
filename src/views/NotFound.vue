@@ -3,7 +3,7 @@
     <div class="main theme-404">
       <svg class="hidden">
         <defs>
-          <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+          <filter id="noise404" x="0%" y="0%" width="100%" height="100%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur" />
             <feColorMatrix
               in="blur"
@@ -39,16 +39,16 @@
 </template>
 
 <script setup>
-import '@/assets/normalize.css';
-import '@/assets/particles.css';
-import '@/style.css'; 
+import '../assets/normalize.css';
+import '../assets/particles.css';
+import './style.css'; 
 	
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import { onMounted } from 'vue'
 	
 import gsap from 'gsap';
-import Particles from '@/utils/particles.js'; 
+import Particles from './utils/particles.js'; 
 
 function goHome() {
 setTimeout(() => {
@@ -57,9 +57,10 @@ setTimeout(() => {
 }
 	
 onMounted(() => {
-	
-const feBlur = document.querySelector(`#noise feGaussianBlur`);
-const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
+
+const root = document.querySelector('.theme-404');
+const feBlur = root.querySelector(`#noise404 feGaussianBlur`);
+const feDisplacementMap = root.querySelector(`#noise404 feDisplacementMap`);
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
