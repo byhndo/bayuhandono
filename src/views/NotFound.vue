@@ -59,7 +59,7 @@ const root404 = ref(null)
 
 function goHome() {
   setTimeout(() => {
-    window.location.replace('https://bayuhandono.me')
+    window.location.href('https://bayuhandono.me')
   }, 2500)
 }
 
