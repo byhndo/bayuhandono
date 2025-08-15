@@ -124,12 +124,19 @@ a:hover, a:active{
 import '@/assets/normalize.css';
 import '@/assets/particles.css';
 import '@/style.css'; 
-
-import { onMounted } from 'vue';
+	
+import { useRouter } from 'vue-router'
+const router = useRouter()
+import { onMounted } from 'vue'
+	
 import gsap from 'gsap';
-import Particles from '@/utils/particles.js'; // utils di src/utils
+import Particles from '@/utils/particles.js'; 
 
 onMounted(() => {
+
+function goHome() {
+  router.push('/bio')
+}
 	
 const feBlur = document.querySelector(`#noise feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
@@ -221,14 +228,13 @@ tl.to(primitiveValues, {
   });
 })();
 
-const btn = document.getElementById("btn404");
-	if (btn) {
+
   btn.addEventListener("click", () => {
     setTimeout(() => {
       location.replace('/');
     }, 2500);
   });
-}
+
 	
 });
 
