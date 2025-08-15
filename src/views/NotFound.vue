@@ -4,10 +4,10 @@
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
 <filter id='noise404' x='0%' y='0%' width='100%' height='100%'>
-<feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
+<feGaussianBlur ref="feBlur" in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
 <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -1" result="goo"></feColorMatrix>
 <feTurbulence type="fractalNoise" baseFrequency="0.009 1" numOctaves="1" seed="1" result="noise"></feTurbulence>
-<feDisplacementMap in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
+<feDisplacementMap ref="feDisplacementMap" in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
 <feComposite in="SourceGraphic" in2="displacement" operator="atop"></feComposite>
 </filter>
 </defs>
@@ -18,11 +18,12 @@
 </div>
 </template>
 
-<script>
+<script setup>
 import '@/assets/normalize.css'
 import '@/assets/particles.css'
 import '@/style.css'
 
+import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import Particles from '@/utils/particles.js'
 
@@ -30,13 +31,12 @@ function goHome() {
   setTimeout(() => {
     window.location.replace('/bio')
   }, 2500)
-}	
-
-window.addEventListener("load", function () {
-window.addEventListener("pageshow", ()=>{
+}
 	
-const feBlur = document.querySelector(`#noise feGaussianBlur`);
-const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
+const feBlur = ref(null)
+const feDisplacementMap = ref(null)
+
+onMounted(() => {
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
@@ -47,11 +47,13 @@ const tl = gsap.timeline({
       duration: 2,
       ease: 'expo.out',
 },
-  onUpdate: function () {
-      feBlur.setAttribute('stdDeviation', primitiveValues.stdDeviation);
-      feDisplacementMap.setAttribute('scale', primitiveValues.scale); 
+  onUpdate() {
+      if (feBlur.value && feDisplacementMap.value) {
+        feBlur.value.setAttribute('stdDeviation', primitiveValues.stdDeviation)
+        feDisplacementMap.value.setAttribute('scale', primitiveValues.scale)
+      }
     }
-  });
+  })
 
 tl.to(primitiveValues, { 
     startAt: { stdDeviation: 40, scale: 100 },  
@@ -69,67 +71,59 @@ tl.to(primitiveValues, {
       opacity: 1,  
       scale: 1 
   }, 0);
-});
 
-    (function () {
-  const arrOpts = [    
-    {
+    (function show() {
+    const arrOpts = [{      
       direction: 'bottom',
       duration: 1000,
       easing: 'expo.in'
-    }
-  ];
+    }];
 
-  const items = document.querySelectorAll(".secondbox404");
+    const it = document.querySelectorAll(".secondbox404");
+    it.forEach((il, pos) => {
+      let bttn = il.querySelector(".particles-button");
+      if (!bttn) return;
+      let particlesOpts = arrOpts[pos];
+      const particles = new Particles(bttn, particlesOpts);
 
-  items.forEach((el, pos) => {
-    let bttn = el.querySelector(".particles-button");
-
-    if (!bttn) return; 
-
-    let particlesOpts = arrOpts[pos];
-    const particles = new Particles(bttn, particlesOpts);
-
-    let tl = gsap.timeline()
-window.addEventListener("pageshow", ()=> {	 
-    tl.to(bttn, {
-      autoAlpha: 0,
-      onComplete: () => {
-        particles.integrate({
-          duration: 900,
-          easing: "easeOutSine"
-        });
-
-        gsap.to(bttn, {
-          duration: 1,	  
-          onComplete: () => {
-            bttn.style.opacity = "1";
-            bttn.style.visibility = "visible";
-	    bttn.style.pointerEvents = "none"; 
-	    gsap.to(bttn, {
-              onComplete: () => {
-                bttn.style.pointerEvents = "none"; 
-                gsap.to(bttn, {
+      gsap.to(bttn, {
+        autoAlpha: 0,
+        onComplete: () => {
+          particles.integrate({
+            duration: 900,
+            easing: "easeOutSine"
+          });
+          gsap.to(bttn, {
+            duration: 1,
+            onComplete: () => {
+              bttn.style.opacity = "1";
+              bttn.style.visibility = "visible";
+	      bttn.style.pointerEvents = "none";
+	      gsap.to(bttn, {
+                onComplete: () => {
+                  bttn.style.pointerEvents = "none"; 
+                  gsap.to(bttn, {
                   onComplete: () => {
                   bttn.style.pointerEvents = "auto"; 
+                  }
+                 });
                 }
-              });
-             }
-            }); 
-          }
-        })
-      }
-    }, ">1.5")
+              }); 
+            }
+          });
+        }
+      });
+
+          bttn.addEventListener("click", function () {
+            particles.disintegrate();
+            tl.play();
+          });
+		
+        });
+      
+  })();
+  
 });
-
-      bttn.addEventListener("click", () => {
-      particles.disintegrate();
-    });
-  });
-})();
-
-
-});   
 </script>
 
 <style>
