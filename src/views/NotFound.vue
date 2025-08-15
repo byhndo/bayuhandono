@@ -125,11 +125,11 @@ import '@/assets/normalize.css';
 import '@/assets/particles.css';
 import '@/style.css';
 	
+import { onMounted } from 'vue'
 import gsap from 'gsap'
 import Particles from '../utils/particles.js'
 
-window.addEventListener("load", function () {
-window.addEventListener("pageshow", ()=>{
+onMounted(() => {
 	
 const feBlur = document.querySelector(`#noise feGaussianBlur`);
 const feDisplacementMap = document.querySelector(`#noise feDisplacementMap`);
@@ -163,7 +163,7 @@ tl.to(primitiveValues, {
       opacity: 1,  
       scale: 1 
   }, 0)
-});
+
 
 (function () {
   const arrOpts = [    
@@ -185,7 +185,6 @@ tl.to(primitiveValues, {
     const particles = new Particles(bttn, particlesOpts);
 
     let tl = gsap.timeline()
-window.addEventListener("pageshow", ()=> {	 
     tl.to(bttn, {
       autoAlpha: 0,
       onComplete: () => {
@@ -214,7 +213,7 @@ window.addEventListener("pageshow", ()=> {
         })
       }
     }, ">1.5")
-});
+
 
       bttn.addEventListener("click", () => {
       particles.disintegrate();
