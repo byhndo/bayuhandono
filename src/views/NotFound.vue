@@ -4,10 +4,10 @@
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
 <filter id='noise404' x='0%' y='0%' width='100%' height='100%'>
-<feGaussianBlur ref="feBlur" in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
+<feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
 <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -1" result="goo"></feColorMatrix>
 <feTurbulence type="fractalNoise" baseFrequency="0.009 1" numOctaves="1" seed="1" result="noise"></feTurbulence>
-<feDisplacementMap ref="feDisplacementMap" in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
+<feDisplacementMap in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
 <feComposite in="SourceGraphic" in2="displacement" operator="atop"></feComposite>
 </filter>
 </defs>
@@ -80,10 +80,10 @@ tl.to(primitiveValues, {
     }
   ];
 
-  const items = document.querySelectorAll(".main");
+  const items = document.querySelectorAll(".secondbox404");
 
   items.forEach((el, pos) => {
-    let bttn = el.querySelector("button.particles-button");
+    let bttn = el.querySelector(".particles-button");
 
     if (!bttn) return; 
 
@@ -128,17 +128,8 @@ window.addEventListener("pageshow", ()=> {
   });
 })();
 
-const btn = document.getElementById("btn404");
-	if (btn) {
-  btn.addEventListener("click", () => {
-    setTimeout(() => {
-      location.replace('/');
-    }, 2500);
-  });
-}
 
-});
-    
+});   
 </script>
 
 <style>
