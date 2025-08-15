@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="boxx">
 <div class="main theme-404">	
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
@@ -132,7 +132,7 @@ body {
 </style>
 
 <style scoped>
-.container {
+.boxx {
   height: 100%;
   display: flex;
   align-items: center;
