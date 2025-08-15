@@ -17,7 +17,7 @@ let timeoutId
 onMounted(() => {
   timeoutId = setTimeout(() => {
     router.replace('/bio')
-  }, 2500)
+  }, 5000)
 })
 
 onBeforeUnmount(() => {
