@@ -75,6 +75,9 @@ const lenis = new Lenis({
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
+  if (path === '/') {
+    await router.push('/bio');
+  }
 });
 
 const stopWatch = watch(isPreloading, async (loading) => {
@@ -86,8 +89,7 @@ const stopWatch = watch(isPreloading, async (loading) => {
 });
 
 watch(() => route.path, async (path, oldPath) => {
-  if (path === '/') {
-      await router.push('/bio')
+  if (path === '/bio') {
       bg.value = 'bio'
     } else if (path === '/photos') {
       bg.value = 'photos'
