@@ -132,7 +132,6 @@ body {
   font-family: var(--font2);
   height: 100dvh;
   overflow: hidden;
-  z-index:100
 }
 </style>
 
@@ -142,7 +141,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5dvh;
+  margin-top: 20dvh;
   overflow: hidden;
 }
 
