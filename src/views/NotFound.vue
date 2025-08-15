@@ -144,7 +144,7 @@ onMounted(() => {
             particles.disintegrate();
             tl.play();
           });
-        } /*foreach*/
+        }); /*foreach*/
       
 
   })(); /*button*/
