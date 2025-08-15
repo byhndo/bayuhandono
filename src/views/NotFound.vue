@@ -33,7 +33,6 @@ function goHome() {
   }, 2500)
 }
 	
-const bttn = ref(null)
 const feBlur = ref(null)
 const feDisplacementMap = ref(null)
 
@@ -115,7 +114,7 @@ tl.to(primitiveValues, {
         }
       });
 
-          bttn.value.addEventListener("click", function () {
+          bttn.addEventListener("click", function () {
             particles.disintegrate();
             tl.play();
           });
