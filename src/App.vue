@@ -71,9 +71,6 @@ const lenis = new Lenis({
   gsap.ticker.lagSmoothing(0);
 
   await animateLoader();  
-  if (route.path === '/') {
-   await router.replace('/bio'); 
-  }
   await nextTick();
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
