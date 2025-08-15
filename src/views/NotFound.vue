@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
   font-family: var(--font3);
   text-transform: uppercase
 }
-.notfound{
+h1.notfound{
   text-transform: uppercase;
   font-size: 10vw
 }
