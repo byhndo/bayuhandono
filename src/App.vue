@@ -72,9 +72,6 @@ const lenis = new Lenis({
 
   await animateLoader();  
   await nextTick();
-  if (route.path === '/') {
-    await router.replace('/bio'); 
-  }
   updateButtonColors(route.path);
   ScrollTrigger.refresh();
   firstLoad.value = false; 
@@ -88,10 +85,15 @@ const stopWatch = watch(isPreloading, async (loading) => {
   }
 });
 
-watch(() => route.path, async (path) => {
-  if (path === '/bio') bg.value = 'bio'
-  else if (path === '/photos') bg.value = 'photos'
-  else bg.value = 'notfound'
+watch(() => route.path, async (path, oldPath) => {
+  if (path === '/') {
+      await router.push('/bio')
+      bg.value = 'bio'
+    } else if (path === '/photos') {
+      bg.value = 'photos'
+    } else {
+      bg.value = 'notfound'
+	}
 
   await nextTick()
   window.scrollTo({ top: 0, behavior: 'smooth' })
