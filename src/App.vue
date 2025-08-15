@@ -26,9 +26,7 @@ const route = useRoute();
 const router = useRouter();
 const bg = ref('bio');
 const firstLoad = ref(true);
-const isNotFound = computed(() => {
-  return route.matched.length && route.matched[0].name === 'notfound'
-})
+const isNotFound = computed(() => route.name === 'notfound')
 
 const triggerAnimation = () => {
   animePath(bg.value);      
