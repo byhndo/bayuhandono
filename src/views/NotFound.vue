@@ -4,10 +4,10 @@
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
 <filter id='noise404' x='0%' y='0%' width='100%' height='100%'>
-<feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
+<feGaussianBlur ref="feBlur" in="SourceGraphic" stdDeviation="0" result="blur"></feGaussianBlur>
 <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -1" result="goo"></feColorMatrix>
 <feTurbulence type="fractalNoise" baseFrequency="0.009 1" numOctaves="1" seed="1" result="noise"></feTurbulence>
-<feDisplacementMap in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
+<feDisplacementMap ref="feDisplacementMap" in="goo" in2="noise" scale="0" result="displacement"></feDisplacementMap>
 <feComposite in="SourceGraphic" in2="displacement" operator="atop"></feComposite>
 </filter>
 </defs>
@@ -33,20 +33,23 @@ function goHome() {
   }, 2500)
 }
 
+const feBlur = ref(null)
+const feDisplacementMap = ref(null)
+
 onMounted(() => {
-const feBlur = document.querySelector(`#noise404 feGaussianBlur`);
-const feDisplacementMap = document.querySelector(`#noise404 feDisplacementMap`);
+//const feBlur = document.querySelector(`#noise404 feGaussianBlur`);
+//const feDisplacementMap = document.querySelector(`#noise404 feDisplacementMap`);
 
 let primitiveValues = { stdDeviation: 0, scale: 0 };
  
-const tl = gsap.timeline({
+gsap.timeline({
     defaults: {
       duration: 2,
       ease: 'expo.out',
 },
   onUpdate: function () {
-      feBlur.setAttribute('stdDeviation', primitiveValues.stdDeviation);
-      feDisplacementMap.setAttribute('scale', primitiveValues.scale); 
+      feBlur.value.setAttribute('stdDeviation', primitiveValues.stdDeviation);
+      feDisplacementMap.value.setAttribute('scale', primitiveValues.scale); 
     }
   })
 
@@ -56,7 +59,7 @@ const tl = gsap.timeline({
     scale: 0 
   }, 0)
 
-.to(".box", {
+.to(".thirdbox404", {
     startAt: {
       autoAlpha: 0,
       opacity: 0,  
