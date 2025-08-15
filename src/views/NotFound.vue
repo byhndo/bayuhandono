@@ -77,7 +77,7 @@ onMounted(() => {
       feBlur?.setAttribute('stdDeviation', primitiveValues.stdDeviation)
       feDisplacementMap?.setAttribute('scale', primitiveValues.scale)
     },
-  })
+  });
 
   tl.to(
     primitiveValues,
@@ -96,7 +96,7 @@ onMounted(() => {
       scale: 1,
     },
     0
-  )
+  );
 
     (function show() {
     const arrOpts = [{      
@@ -140,16 +140,14 @@ onMounted(() => {
         }
       });
 
-      gsap.to(bttn, {
-        onComplete: () => {
           bttn.addEventListener("click", function () {
             particles.disintegrate();
             tl.play();
           });
-        }
-      });
-    });
-  })();
+        } /*foreach*/
+      
+
+  })(); /*button*/
   
 }) /*mounted*/
 </script>
