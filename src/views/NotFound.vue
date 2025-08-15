@@ -1,6 +1,6 @@
 <template>
-<div class="boxx">
-<div class="main theme-404">	
+<div class="firstbox404">
+<div class="secondbox404 theme-404">	
 <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
 <defs>
 <filter id='noise404' x='0%' y='0%' width='100%' height='100%'>
@@ -12,7 +12,7 @@
 </filter>
 </defs>
 </svg>				  
-<div class="box">404</div>	
+<div class="thirdbox404">404</div>	
 <button id="btn404" class="particles-button" @click="goHome">Home</button>
 </div>
 </div>
@@ -74,7 +74,7 @@ const tl = gsap.timeline({
       easing: 'expo.in'
     }];
 
-    const it = document.querySelectorAll(".main");
+    const it = document.querySelectorAll(".secondbox404");
     it.forEach((il, pos) => {
       let bttn = il.querySelector(".particles-button");
       if (!bttn) return;
@@ -132,7 +132,7 @@ body {
 </style>
 
 <style scoped>
-.boxx {
+.firstbox404{
   height: 100%;
   display: flex;
   align-items: center;
@@ -141,14 +141,14 @@ body {
   overflow: hidden;
 }
 
-.main {
+.secondbox404 {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.box {
+.thirdbox404 {
   font-size: 30vw;
   font-family: var(--font3);
   color: var(--textloadercolor);
@@ -181,19 +181,19 @@ body {
 }
 
 @media only screen and (orientation: landscape) {
-  .container {
+  .firstbox404{
     margin-top: 35dvh;
   }
-  .box {
+  .thirdbox404 {
     font-size: 20vw;
   }
 }
 
 @media screen and (max-width: 760px) and (min-width: 600px) {
-  .container {
+  .firstbox404 {
     margin-top: 27dvh;
   }
-  .box {
+  .thirdbox404{
     font-size: 10vw;
   }
 }
