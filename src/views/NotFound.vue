@@ -187,7 +187,7 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   user-select: none;
-  filter: url(#noise);
+  filter: url(#noise404);
   opacity: 0;
   visibility: hidden;
 }
