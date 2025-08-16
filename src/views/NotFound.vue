@@ -5,6 +5,7 @@
       <p>Page not found</p>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
