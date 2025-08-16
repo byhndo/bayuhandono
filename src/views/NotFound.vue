@@ -2,6 +2,7 @@
   <div class="notfound-wrapper">
     <div class="notfound-content">    
       <p>Page not found</p>  
+      <p>redirecting to bio..</p>  
   </div>
   </div>
 </template>
@@ -29,13 +30,6 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  height: 100vh;          
-}
-
-.notfound-content {
-  font-family: sans-serif; 
-  text-transform: uppercase;
-  color: #000;           
+  text-align: center;          
 }
 </style>
