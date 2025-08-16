@@ -1,7 +1,7 @@
 <template>
   <div class="notfound-wrapper">
     <div class="notfound-content">
-      <h1 class="notfound">404</h1>
+      <div class="notfound">
       <p>Page not found</p>
     </div>
   </div>
@@ -40,16 +40,11 @@ onBeforeUnmount(() => {
   color: #000;           
 }
 
-h1.notfound {
-  font-size: 10vw;         
+.notfound {
+  font-size: 5vw;         
   margin: 0;
   line-height: 1;
   color: #000;          
 }
 
-p {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: #000;
-}
 </style>
