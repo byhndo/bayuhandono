@@ -16,7 +16,7 @@ let timeoutId
 
 onMounted(() => {
   timeoutId = setTimeout(() => {
-    router.replace('/bio')
+    router.replace('/bio') 
   }, 5000)
 })
 
@@ -31,13 +31,25 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 100vh;          
 }
-.notfound-content{
-  font-family: var(--font3);
+
+.notfound-content {
+  font-family: sans-serif; 
   text-transform: uppercase;
+  color: #000;           
 }
-h1.notfound{
-  text-transform: uppercase;
-  font-size: 10vw;
+
+h1.notfound {
+  font-size: 10vw;         
+  margin: 0;
+  line-height: 1;
+  color: #000;          
+}
+
+p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #000;
 }
 </style>
